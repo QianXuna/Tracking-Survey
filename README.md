@@ -9,8 +9,10 @@
 |知识库|[awesome-3d-multi-object-tracking](https://github.com/Po-Jen/awesome-3d-multi-object-tracking)|2022|3D多目标跟踪|
 |[ICCV 2023](https://openaccess.thecvf.com/ICCV2023?day=all)|https://blog.csdn.net/CV_Autobot/article/details/132222653 https://github.com/amusi/ICCV2023-Papers-with-Code?tab=readme-ov-file#VThttps://github.com/amusi/ICCV2023-Papers-with-Code?tab=readme-ov-file#VT|2023||
 |[CVPR 2023](https://openaccess.thecvf.com/CVPR2023?day=all)|https://zhuanlan.zhihu.com/p/615368672|2023|
+|[NIPS 2023](https://proceedings.neurips.cc/paper/2023)|https://openreview.net/group?id=NeurIPS.cc/2023/Conference#tab-accept-oral|2023||
 |[CVPR 2024](https://openaccess.thecvf.com/CVPR2024?day=all)|https://github.com/52CV/CVPR-2024-Papers?tab=readme-ov-file#25|2024||
 |AAAI 2024|https://github.com/DmitryRyumin/AAAI-2024-Papers?tab=readme-ov-file|2024||
+|ECCV 2024|未发布|2024||
 
 
 # Paper
