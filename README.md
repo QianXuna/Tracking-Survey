@@ -9,7 +9,7 @@
 |知识库|[awesome-3d-multi-object-tracking](https://github.com/Po-Jen/awesome-3d-multi-object-tracking)|2022|3D多目标跟踪|
 |[ICCV 2023](https://openaccess.thecvf.com/ICCV2023?day=all)|https://blog.csdn.net/CV_Autobot/article/details/132222653 https://github.com/amusi/ICCV2023-Papers-with-Code?tab=readme-ov-file#VThttps://github.com/amusi/ICCV2023-Papers-with-Code?tab=readme-ov-file#VT|2023||
 |[CVPR 2023](https://openaccess.thecvf.com/CVPR2023?day=all)|https://zhuanlan.zhihu.com/p/615368672|2023|
-|CVPR 2024|https://github.com/52CV/CVPR-2024-Papers?tab=readme-ov-file#25|2024||
+|[CVPR 2024](https://openaccess.thecvf.com/CVPR2024?day=all)|https://github.com/52CV/CVPR-2024-Papers?tab=readme-ov-file#25|2024||
 |AAAI 2024|https://github.com/DmitryRyumin/AAAI-2024-Papers?tab=readme-ov-file|2024||
 
 
@@ -22,9 +22,14 @@
 |[GHOST](https://arxiv.org/pdf/2206.04656)|https://github.com/dvl-tum/GHOST|CVPR 2023||
 |[OC-SORT](https://arxiv.org/pdf/2203.14360)|https://github.com/noahcao/OC_SORT|CVPR 2023||
 |[FineTrack](https://arxiv.org/pdf/2302.14589)|无|CVPR 2023||
-|[RMOT、Refer-KITTI、TransRMOT](https://arxiv.org/pdf/2303.03366)|https://github.com/wudongming97/RMOT|CVPR 2023|指代多目标跟踪 (RMOT) 任务、Refer-KiTTI数据集、TransRMOT框架|
+|[RMOT、Refer-KITTI、TransRMOT](https://arxiv.org/pdf/2303.03366)|https://github.com/wudongming97/RMOT|CVPR 2023|指代多目标跟踪 (RMOT) 任务、Refer-KiTTI 数据集、TransRMOT 框架|
 |[MOTRv2](https://arxiv.org/pdf/2211.09791)|https://github.com/noahcao/OC_SORT|CVPR 2023||
 |[OVTrack](https://arxiv.org/pdf/2304.08408)|https://www.vis.xyz/pub/ovtrack/|CVPR 2023|开放词汇|
+|[VoxelNeXt](https://arxiv.org/pdf/2303.11301)|https://github.com/dvlab-research/VoxelNeXt|CVPR 2023|3D 检测、3D tracking|
+|[PF-Track](https://arxiv.org/pdf/2302.03802)|https://github.com/TRI-ML/PF-Track|CVPR 2023|3D、multi-camera|
+|[UTM](https://openaccess.thecvf.com/content/CVPR2023/papers/You_UTM_A_Unified_Multiple_Object_Tracking_Model_With_Identity-Aware_Feature_CVPR_2023_paper.pdf)|无|CVPR 2023||
+|[SUSHI](https://openaccess.thecvf.com/content/CVPR2023/papers/Cetintas_Unifying_Short_and_Long-Term_Tracking_With_Graph_Hierarchies_CVPR_2023_paper.pdf)|https://github.com/dvl-tum/SUSHI|CVPR 2023||
+|[DETracker](https://openaccess.thecvf.com/content/CVPR2023/papers/Huang_Tracking_Multiple_Deformable_Objects_in_Egocentric_Videos_CVPR_2023_paper.pdf)|not release|CVPR 2023|DogThruGlasses 数据集、DETracker 框架||
 |[ColTrack](https://arxiv.org/pdf/2308.05911)|https://github.com/bytedance/ColTrack|ICCV 2023|低帧率|
 |[MeMOTR](https://arxiv.org/pdf/2307.15700)|https://github.com/MCG-NJU/MeMOTR|ICCV 2023||
 |[TrackFlow](https://arxiv.org/pdf/2308.11513)|无|ICCV 2023||
@@ -34,7 +39,7 @@
 |[3DMOTFormer](https://arxiv.org/pdf/2308.06635)|https://github.com/dsx0511/3DMOTFormer|ICCV 2023|3D|
 |[OC-MOT](https://arxiv.org/pdf/2309.00233))|https://github.com/amazon-science/object-centric-multiple-object-tracking|ICCV 2023|无监督|
 |[TrajectoryFormer](https://arxiv.org/pdf/2306.05888)|https://github.com/poodarchu/EFG|ICCV 2023|3D|
-|[SportsMOT、MixSort](https://arxiv.org/pdf/2304.05170)|https://deeperaction.github.io/datasets/sportsmot.html|ICCV 2023|SportsMOT数据集、MixSort框架|
+|[SportsMOT、MixSort](https://arxiv.org/pdf/2304.05170)|https://deeperaction.github.io/datasets/sportsmot.html|ICCV 2023|SportsMOT 数据集、MixSort 框架|
 |[U2MOT](https://arxiv.org/pdf/2307.15409)|https://github.com/alibaba/u2mot/|ICCV 2023|无监督|
 |[DQTrack](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_End-to-end_3D_Tracking_with_Decoupled_Queries_ICCV_2023_paper.pdf)|https://sites.google.com/view/dqtrack|ICCV 2023|3D|
 |[DARTH](https://openaccess.thecvf.com/content/ICCV2023/papers/Segu_DARTH_Holistic_Test-time_Adaptation_for_Multiple_Object_Tracking_ICCV_2023_paper.pdf)|https://github.com/mattiasegu/darth|ICCV 2023|域偏移|
@@ -57,13 +62,17 @@
 |[DiffMOT](https://arxiv.org/abs/2403.02075)|https://diffmot.github.io/|CVPR 2024||
 |[iKUN](https://arxiv.org/pdf/2312.16245)|https://github.com/dyhBUPT/iKUN|CVPR 2024||
 |[SLack](https://arxiv.org/pdf/2409.11235)|https://github.com/siyuanliii/SLAck|ECCV 2024|开放词汇|
+|[DepthMOT](https://arxiv.org/pdf/2404.05518)|https://github.com/JackWoo0831/DepthMOT|ECCV 2024 (?)||
+|[MOTP](https://arxiv.org/pdf/2403.16848)|https://github.com/MCG-NJU/MOTIP|ECCV 2024 (?)||
+|[MLT-Track](https://arxiv.org/pdf/2404.12031)|will be available: https://github.com/mzl163/MLS-Track|ECCV 2024 (?)|Refer-UE-City 数据集、RMOT|
+|[SMOT、BenSMOT、SMOTer](https://arxiv.org/abs/2403.05021)|https://github.com/HengLan/SMOT|ECCV 2024|语义多目标跟踪 (SMOT) 任务、BenSMOT 数据集、SMOTer 框架|
+|[LG-MOT](https://arxiv.org/pdf/2406.04844)|https://github.com/WesLee88524/LG-MOT|ECCV 2024 (?)|多模态|
 
 
 ## 单目标
 
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
-|[RGBDEMT]
 |[PVT++](https://arxiv.org/pdf/2211.11629)|https://github.com/jaraxxus-me/pvt_pp|ICCV 2023||
 |[Cross-modal Orthogonal High-rank Augmentation for RGB-Event Transformer-trackers](https://arxiv.org/pdf/2307.04129)|https://github.com/ZHU-Zhiyu/High-Rank_RGB-Event_Tracker|ICCV 2023|跨模态|
 |[MixCycle](https://arxiv.org/pdf/2303.09219)|https://github.com/Mumuqiao/MixCycle|ICCV 2023|3D、半监督|
@@ -78,6 +87,10 @@
 |[SyncTrack](https://arxiv.org/abs/2308.12549)|无|ICCV 2023|3D|
 |[CiteTracker](https://arxiv.org/pdf/2308.11322)|https://github.com/NorahGreen/CiteTracker|ICCV 2023|多模态|
 |[DecoupleTNL](https://openaccess.thecvf.com/content/ICCV2023/papers/Ma_Tracking_by_Natural_Language_Specification_with_Long_Short-term_Context_Decoupling_ICCV_2023_paper.pdf)|无|ICCV 2023|多模态|
+|[ZoomTrack](https://openreview.net/pdf?id=DQgTewaKzt)|https://github.com/Kou-99/ZoomTrack|NIPS 2023||
+|[MixFormerv2](https://openreview.net/pdf?id=8WvYAycmDJ)|https://github.com/MCG-NJU/MixFormerV2|NIPS 2023||
+|[RFGM-B256](https://openreview.net/pdf?id=On0IDMYKw2)|无|NIPS 2023||
+|[BadTrack](https://openreview.net/pdf?id=W9pJx9sFCh)|无|NIPS 2023||
 |[BAT](https://arxiv.org/pdf/2312.10611)|https://github.com/SparkTempest/BAT|AAAI 2024||
 |[M3SOT](https://arxiv.org/pdf/2312.06117)|https://github.com/ywuchina/TeamCode|AAAI 2024|3D|
 |[StreamTrack](https://ojs.aaai.org/index.php/AAAI/article/view/28196)|无|AAAI 2024|3D|
@@ -98,15 +111,20 @@
 |[UnTrack](https://arxiv.org/pdf/2311.15851)|not release|CVPR 2024|任意模态|
 |[SDSTrack](https://arxiv.org/abs/2403.16002v2)|https://github.com/hoqolo/SDSTrack|CVPR 2024|多模态|
 |[LRR](https://openreview.net/attachment?id=3qo1pJHabg&name=pdf)|https://github.com/tsingqguo/robustOT|ICLR 2024|多模态|
+|[VastTrack](https://arxiv.org/pdf/2403.03493)|https://github.com/HengLan/VastTrack|ECCV 2024 (?)|VastTrack 多模态数据集|
 
 
 ## 其他
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
+|[GarmentTracking](https://arxiv.org/pdf/2303.13913)|https://garment-tracking.robotflow.ai/|CVPR 2023|服装跟踪|
+|[ContourTracking](https://arxiv.org/pdf/2303.08364)|https://github.com/JunbongJang/contour-tracking|CVPR 2023|细胞轮廓跟踪|
+|[NLOS-Track](https://arxiv.org/pdf/2303.11791)|https://againstentropy.github.io/NLOS-Track/|CVPR 2023|非视距 (NLOR) 跟踪|
 |[PlanerTrack](https://arxiv.org/pdf/2303.07625)|https://hengfan2010.github.io/projects/PlanarTrack/|ICCV 2023|单平面跟踪数据集|
 |[MPOT、PRTrack](https://openaccess.thecvf.com/content/ICCV2023/papers/Zhang_Multiple_Planar_Object_Tracking_ICCV_2023_paper.pdf)|https://zzcheng.top/MPOT/|ICCV 2023|多平面追踪 (MPOT) 任务、PRTrack框架|
 |[Tracking by 3D Model Estimation of Unknown Objects in Videos](https://arxiv.org/pdf/2304.06419)|无|ICCV 2023|
 |[TAPIR](https://arxiv.org/pdf/2306.08637)|https://hengfan2010.github.io/projects/PlanarTrack/|ICCV 2023|点跟踪|
+|[Context-PIP](https://openreview.net/pdf?id=cnpkzQZaLU)|https://wkbian.github.io/Projects/Context-PIPs/|NIPS 2023|点跟踪|
 |[KPA-Tracker](https://ojs.aaai.org/index.php/AAAI/article/view/28158/28317)|https://ojs.aaai.org/index.php/AAAI/article/view/28158/28317|AAAI 2024|姿态追踪|
 |[CodedEvents](https://openaccess.thecvf.com/content/CVPR2024/papers/Shah_CodedEvents_Optimal_Point-Spread-Function_Engineering_for_3D-Tracking_with_Event_Cameras_CVPR_2024_paper.pdf)|无|CVPR 2024||
 |[LEAP-VO](https://arxiv.org/pdf/2401.01887)|无|CVPR 2024|点跟踪|
