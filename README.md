@@ -24,6 +24,7 @@
 |[FineTrack](https://arxiv.org/pdf/2302.14589)|无|CVPR 2023||
 |[RMOT、Refer-KITTI、TransRMOT](https://arxiv.org/pdf/2303.03366)|https://github.com/wudongming97/RMOT|CVPR 2023|指代多目标跟踪 (RMOT) 任务、Refer-KiTTI数据集、TransRMOT框架|
 |[MOTRv2](https://arxiv.org/pdf/2211.09791)|https://github.com/noahcao/OC_SORT|CVPR 2023||
+|[OVTrack](https://arxiv.org/pdf/2304.08408)|https://www.vis.xyz/pub/ovtrack/|CVPR 2023|开放词汇|
 |[ColTrack](https://arxiv.org/pdf/2308.05911)|https://github.com/bytedance/ColTrack|ICCV 2023|低帧率|
 |[MeMOTR](https://arxiv.org/pdf/2307.15700)|https://github.com/MCG-NJU/MeMOTR|ICCV 2023||
 |[TrackFlow](https://arxiv.org/pdf/2308.11513)|无|ICCV 2023||
@@ -62,6 +63,7 @@
 
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
+|[RGBDEMT]
 |[PVT++](https://arxiv.org/pdf/2211.11629)|https://github.com/jaraxxus-me/pvt_pp|ICCV 2023||
 |[Cross-modal Orthogonal High-rank Augmentation for RGB-Event Transformer-trackers](https://arxiv.org/pdf/2307.04129)|https://github.com/ZHU-Zhiyu/High-Rank_RGB-Event_Tracker|ICCV 2023|跨模态|
 |[MixCycle](https://arxiv.org/pdf/2303.09219)|https://github.com/Mumuqiao/MixCycle|ICCV 2023|3D、半监督|
@@ -108,6 +110,6 @@
 |[KPA-Tracker](https://ojs.aaai.org/index.php/AAAI/article/view/28158/28317)|https://ojs.aaai.org/index.php/AAAI/article/view/28158/28317|AAAI 2024|姿态追踪|
 |[CodedEvents](https://openaccess.thecvf.com/content/CVPR2024/papers/Shah_CodedEvents_Optimal_Point-Spread-Function_Engineering_for_3D-Tracking_with_Event_Cameras_CVPR_2024_paper.pdf)|无|CVPR 2024||
 |[LEAP-VO](https://arxiv.org/pdf/2401.01887)|无|CVPR 2024|点跟踪|
-|[DPHMs](https://arxiv.org/pdf/2312.01068)|https://tangjiapeng.github.io/projects/DPHMs/|CVPR 2024|人头模型|、
+|[DPHMs](https://arxiv.org/pdf/2312.01068)|https://tangjiapeng.github.io/projects/DPHMs/|CVPR 2024|人头模型|
 
 ## 检测
