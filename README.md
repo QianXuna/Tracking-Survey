@@ -1,4 +1,7 @@
 "# Tracking-Survey" 
+repo 列：
+- 无：无仓库
+- not release：有仓库但未开源
 
 # 论文列表
 |列表名|repo|year（知识库为更新时间）|观点|
@@ -12,7 +15,7 @@
 |[NIPS 2023](https://proceedings.neurips.cc/paper/2023)|https://openreview.net/group?id=NeurIPS.cc/2023/Conference#tab-accept-oral|2023||
 |[CVPR 2024](https://openaccess.thecvf.com/CVPR2024?day=all)|https://github.com/52CV/CVPR-2024-Papers?tab=readme-ov-file#25|2024||
 |AAAI 2024|https://github.com/DmitryRyumin/AAAI-2024-Papers?tab=readme-ov-file|2024||
-|ECCV 2024|未发布|2024||
+|[ECCV 2024](https://eccv2024.ecva.net/virtual/2024/papers.html?filter=titles)|https://github.com/amusi/ECCV2024-Papers-with-Code|2024||
 
 
 # Paper
@@ -64,12 +67,12 @@
 |[DiffMOT](https://arxiv.org/abs/2403.02075)|https://diffmot.github.io/|CVPR 2024||
 |[iKUN](https://arxiv.org/pdf/2312.16245)|https://github.com/dyhBUPT/iKUN|CVPR 2024||
 |[SLack](https://arxiv.org/pdf/2409.11235)|https://github.com/siyuanliii/SLAck|ECCV 2024|开放词汇|
-|[DepthMOT](https://arxiv.org/pdf/2404.05518)|https://github.com/JackWoo0831/DepthMOT|ECCV 2024 (?)||
-|[MOTP](https://arxiv.org/pdf/2403.16848)|https://github.com/MCG-NJU/MOTIP|ECCV 2024 (?)||
-|[MLT-Track](https://arxiv.org/pdf/2404.12031)|will be available: https://github.com/mzl163/MLS-Track|ECCV 2024 (?)|Refer-UE-City 数据集、RMOT|
+|[DepthMOT](https://arxiv.org/pdf/2404.05518)|https://github.com/JackWoo0831/DepthMOT|ECCV 2024 (×)||
+|[MOTP](https://arxiv.org/pdf/2403.16848)|https://github.com/MCG-NJU/MOTIP|ECCV 2024 (×)||
+|[MLT-Track](https://arxiv.org/pdf/2404.12031)|will be available: https://github.com/mzl163/MLS-Track|ECCV 2024 (×)|Refer-UE-City 数据集、RMOT|
 |[SMOT、BenSMOT、SMOTer](https://arxiv.org/abs/2403.05021)|https://github.com/HengLan/SMOT|ECCV 2024|语义多目标跟踪 (SMOT) 任务、BenSMOT 数据集、SMOTer 框架|
-|[LG-MOT](https://arxiv.org/pdf/2406.04844)|https://github.com/WesLee88524/LG-MOT|ECCV 2024 (?)|多模态|
-
+|[LG-MOT](https://arxiv.org/pdf/2406.04844)|https://github.com/WesLee88524/LG-MOT|ECCV 2024 (×)|多模态|
+|[SPAM](https://arxiv.org/pdf/2404.11426)|
 
 ## 单目标
 
@@ -113,7 +116,8 @@
 |[UnTrack](https://arxiv.org/pdf/2311.15851)|not release|CVPR 2024|任意模态|
 |[SDSTrack](https://arxiv.org/abs/2403.16002v2)|https://github.com/hoqolo/SDSTrack|CVPR 2024|多模态|
 |[LRR](https://openreview.net/attachment?id=3qo1pJHabg&name=pdf)|https://github.com/tsingqguo/robustOT|ICLR 2024|多模态|
-|[VastTrack](https://arxiv.org/pdf/2403.03493)|https://github.com/HengLan/VastTrack|ECCV 2024 (?)|VastTrack 多模态数据集|
+|[VastTrack](https://arxiv.org/pdf/2403.03493)|https://github.com/HengLan/VastTrack|ECCV 2024 (×)|VastTrack 多模态数据集|
+|[DiffTracker](https://arxiv.org/pdf/2407.08394)|无|ECCV 2024|无监督|
 
 
 ## 其他
@@ -131,5 +135,10 @@
 |[CodedEvents](https://openaccess.thecvf.com/content/CVPR2024/papers/Shah_CodedEvents_Optimal_Point-Spread-Function_Engineering_for_3D-Tracking_with_Event_Cameras_CVPR_2024_paper.pdf)|无|CVPR 2024||
 |[LEAP-VO](https://arxiv.org/pdf/2401.01887)|无|CVPR 2024|点跟踪|
 |[DPHMs](https://arxiv.org/pdf/2312.01068)|https://tangjiapeng.github.io/projects/DPHMs/|CVPR 2024|人头模型|
+|[DecoMotion](https://arxiv.org/pdf/2407.06531)|not release|ECCV 2024|点跟踪|
+|[MapTracker](https://arxiv.org/pdf/2403.15951)|https://map-tracker.github.io/|ECCV 2024|高清地图 (HD-map)|
+|[PapMOT](https://eccv.ecva.net/virtual/2024/poster/1816)|paper 和 repo 都未发布|ECCV 2024|对抗补丁攻击 (Adversarial Patch Attack)、MOT|
+|[AADN](https://arxiv.org/pdf/2402.17976)|无|ECCV 2024|对抗防御 (Adversarial Defense)、SOT|
+|[DINO-Tracker](https://arxiv.org/pdf/2403.14548)|https://dino-tracker.github.io/|ECCV 2024|点跟踪|
 
 ## 检测
