@@ -23,7 +23,7 @@ repo 列：
 
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
-|[MotionTrack](https://arxiv.org/pdf/2303.10404)|无|CVPR 2023|Track-by-detection范式<br>改进短期关联，提出新的运动模型：不用KF预测track的位置，用自注意力、卷积建立一个交互矩阵，该矩阵建模了一个track对另一个track的影响，对交互矩阵用图卷积和MLP，预测位置的偏移量<br>改进长期关联，提出新的关联模型和误差补偿模型：对丢失track的时间分布模式和速度-时间关系建模，得到相关性矩阵，再做匹配；用匹配到的检测和丢失track的预测来推理遮挡期间的预测误差，并完善track的预测|
+|[MotionTrack](https://arxiv.org/pdf/2303.10404)|无|CVPR 2023|1. Track-by-detection范式<br>2. 改进短期关联，提出新的运动模型：不用KF预测track的位置，用自注意力、卷积建立一个交互矩阵，该矩阵建模了一个track对另一个track的影响，对交互矩阵用图卷积和MLP，预测位置的偏移量<br>3. 改进长期关联，提出新的关联模型和误差补偿模型：对丢失track的时间分布模式和速度-时间关系建模，得到相关性矩阵，再做匹配；用匹配到的检测和丢失track的预测来推理遮挡期间的预测误差，并完善track的预测|
 |[GHOST](https://arxiv.org/pdf/2206.04656)|https://github.com/dvl-tum/GHOST|CVPR 2023||
 |[OC-SORT](https://arxiv.org/pdf/2203.14360)|https://github.com/noahcao/OC_SORT|CVPR 2023||
 |[FineTrack](https://arxiv.org/pdf/2302.14589)|无|CVPR 2023||
