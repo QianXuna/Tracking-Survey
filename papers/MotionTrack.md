@@ -72,7 +72,7 @@ MotionTrack分为两步：
 - Step2：长期关联。根据历史track和不匹配的检测重新识别丢失的track，然后在遮挡期间补偿track
 
 ## Interaction Module
-构建track之间的定向交互以获得帧$t$的预测。分为两个阶段：
+构建track之间的定向交互以获得帧 $t$ 的预测。分为两个阶段：
 - Interaction Extraction (交互提取)。连接绝对坐标矩阵和坐标偏移量矩阵。如图3所示，输入这个连接矩阵，经过一些操作，输出一个非对称交互矩阵，每个元素表示一个track对另一个track的影响。具体的操作有：
   - 连接矩阵先输入到自注意力模块
   - 为进一步考虑整个场景，如群体行为，将自注意力的结果，级联输入到非对称卷积模块
@@ -86,18 +86,18 @@ MotionTrack分为两步：
 
 ## Refind Module
 重新找到丢失的轨迹。分为两个阶段：
-- Correlation Calculation (相关性计算)。在IoU关联后，得到了未匹配检测矩阵 $D^{rest}\in R^{U\times 5}$ 和丢失track矩阵$T^{lost}\in R^{S\times30\times5}$，30是指保留每个丢失track的最后30个存活的状态的位置，最后一维包括了时间和位置，即$(t,x,y,w,h)$。如图4所示，输入这两个矩阵，具体的操作有：
-  - 对$D^{rest}$和$T^{lost}$在最后一个维度上做归一化，然后分别提取特征：
-    1. 对$T^{lost}$的第二和第三维度上做非对称卷积，然后池化为特征向量$F^{traj}\in R^{S\times D}$
-    2. 计算检测与丢失track的最后1个存活状态的位置之间的difference，并且和检测连接起来$D^{\hat{rest}}\in R^{(S\times U)\times 10}$，然后将连接矩阵映射到高维特征$F^{dete}\in R^{(S\times U)\times D}$
-   - 连接$F^{traj}$和$F^{dete}$为特征矩阵$F\in R^{(S\times U)\times 2D}$，该矩阵建模了track的空间分布模式和速度-时间关系等信息
+- Correlation Calculation (相关性计算)。在IoU关联后，得到了未匹配检测矩阵 $D^{rest}\in R^{U\times 5}$ 和丢失track矩阵 $T^{lost}\in R^{S\times30\times5}$ ，30是指保留每个丢失track的最后30个存活的状态的位置，最后一维包括了时间和位置，即 $(t,x,y,w,h)$ 。如图4所示，输入这两个矩阵，具体的操作有：
+  - 对 $D^{rest}$ 和 $T^{lost}$ 在最后一个维度上做归一化，然后分别提取特征：
+    1. 对 $T^{lost}$ 的第二和第三维度上做非对称卷积，然后池化为特征向量 $F^{traj}\in R^{S\times D}$ 
+    2. 计算检测与丢失track的最后1个存活状态的位置之间的difference，并且和检测连接起来 $D^{\hat{rest}}\in R^{(S\times U)\times 10}$ ，然后将连接矩阵映射到高维特征 $F^{dete}\in R^{(S\times U)\times D}$ 
+   - 连接 $F^{traj}$ 和 $F^{dete}$ 为特征矩阵 $F\in R^{(S\times U)\times 2D}$ ，该矩阵建模了track的空间分布模式和速度-时间关系等信息
    - 送入Fc+Sigmoid，得到correlation matrix
    - 使用贪婪算法来选择具有高相关性得分的匹配对，并将剩余的不匹配检测初始化为新的track
  - Error Compensation (误差补偿)。与其他插值方法不同，这里纠正预测的轨迹而不是生成新的轨迹
-   - 使用匹配到的检测$d^t$和丢失track的预测$p^t$来推理出遮挡期间的误差，并完善track的预测。
+   - 使用匹配到的检测 $d^t$ 和丢失track的预测 $p^t$ 来推理出遮挡期间的误差，并完善track的预测。
 <center><img src=../images/image-3.png style="zoom:50%"></center>
 
-其中track在$t_1$丢失，在$t_2$被重新发现
+其中track在 $t_1$ 丢失，在 $t_2$ 被重新发现
 
 <center><img src=../images/image.png style="zoom:50%"></center>
 
