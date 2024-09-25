@@ -23,12 +23,12 @@ https://arxiv.org/pdf/2206.04656
 
 
 ## Methodology
-## A simple tracking-by-detection tracker
+### A simple tracking-by-detection tracker
 使用简单常规的tracking的pipeline  
 
 <center><img src=../images/image-11.png style="zoom:50%"></center>
 
-## Strong appearance model for MOT
+### Strong appearance model for MOT
 - 本文的基础reID模型
   - 基于ResNet50，在常规的person reID数据集训练
   - 没有在任何MOT数据集上训练
@@ -48,3 +48,18 @@ https://arxiv.org/pdf/2206.04656
      <center><img src=../images/image-13.png style="zoom:50%"></center>
   
     - 不需要任何复杂的训练过程或测试时间适应，也不需要几个BN层，但这可以很好地近似序列的统计数据，因为一个序列的所有图像都具有高度相似的基础分布，并导致跟踪序列之间的距离直方图更加相似。这反过来又允许我们定义非常适合所有序列的匹配阈值，即很好地分离所有直方图
+
+
+## Experiments
+### inactive proxies和domain adaptation的消融实验：
+![alt text](../images/image-14.png)
+### 不同domain adaptation方法的消融实验
+![alt text](../images/image-15.png)
+### 外观、运动及它们的组合的贡献分析
+![alt text](../images/image-16.png)
+### MOT17&mot20 test set
+![alt text](../images/image-17.png)
+### DanceTrack
+![alt text](../images/image-18.png)
+### BDD100k
+![alt text](../images/image-19.png)
