@@ -72,7 +72,13 @@ repo 列：
 |[MLT-Track](https://arxiv.org/pdf/2404.12031)|will be available: https://github.com/mzl163/MLS-Track|ECCV 2024 (×)|Refer-UE-City 数据集、RMOT|
 |[SMOT、BenSMOT、SMOTer](https://arxiv.org/abs/2403.05021)|https://github.com/HengLan/SMOT|ECCV 2024|语义多目标跟踪 (SMOT) 任务、BenSMOT 数据集、SMOTer 框架|
 |[LG-MOT](https://arxiv.org/pdf/2406.04844)|https://github.com/WesLee88524/LG-MOT|ECCV 2024 (×)|多模态|
-|[SPAM](https://arxiv.org/pdf/2404.11426)|
+|[SPAM](https://arxiv.org/pdf/2404.11426)|无|ECCV 2024|MOT标注生成|
+|[BUSCA]|https://arxiv.org/pdf/2407.10151|https://github.com/lorenzovaquero/BUSCA|ECCV 2024||
+|[VETRA](https://elib.dlr.de/205389/1/Hellekes_et_al_2024_VETRA_dataset_preprint.pdf)|https://elib.dlr.de/205389/1/Hellekes_et_al_2024_VETRA_dataset_preprint.pdf|ECCV 2024|航空图像、车辆跟踪|
+|[Walker](https://eccv.ecva.net/virtual/2024/poster/385)|paper 和 repo 都未发布|ECCV 2024|自监督|
+|[JDT3D](https://arxiv.org/pdf/2407.04926)|https://github.com/TRAILab/JDT3D|ECCV 2024|3D、Track-by-attention (TBA)|
+|[OneTrack](https://eccv.ecva.net/virtual/2024/poster/2192)|paper 和 repo 都未发布|ECCV 2024|3D、end-to-end|
+
 
 ## 单目标
 
@@ -86,7 +92,6 @@ repo 列：
 |[MoMA-M3T](https://arxiv.org/pdf/2308.11607)|https://github.com/kuanchihhuang/MoMA-M3T|ICCV 2023|3D|
 |[MITS](https://arxiv.org/pdf/2308.13266)|https://github.com/yoxu515/MITS|ICCV 2023|Segment+Track|
 |[MBP-Track](https://arxiv.org/pdf/2303.05071)|https://github.com/slothfulxtx/MBPTrack3D|ICCV 2023|3D|
-|[OmniMotion](https://arxiv.org/pdf/2306.05422)|https://omnimotion.github.io/|ICCV 2023|伪深度|
 |[Aba-ViTrack](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Adaptive_and_Background-Aware_Vision_Transformer_for_Real-Time_UAV_Tracking_ICCV_2023_paper.pdf)|https://github.com/xyyang317/Aba-ViTrack|ICCV 2023||
 |[HiT](https://arxiv.org/pdf/2308.06904)|https://github.com/kangben258/HiT|ICCV 2023||
 |[SyncTrack](https://arxiv.org/abs/2308.12549)|无|ICCV 2023|3D|
@@ -118,7 +123,11 @@ repo 列：
 |[LRR](https://openreview.net/attachment?id=3qo1pJHabg&name=pdf)|https://github.com/tsingqguo/robustOT|ICLR 2024|多模态|
 |[VastTrack](https://arxiv.org/pdf/2403.03493)|https://github.com/HengLan/VastTrack|ECCV 2024 (×)|VastTrack 多模态数据集|
 |[DiffTracker](https://arxiv.org/pdf/2407.08394)|无|ECCV 2024|无监督|
-
+|[LoRAT](https://arxiv.org/pdf/2403.05231)|https://github.com/LitingLin/LoRAT|ECCV 2024|LoRA|
+|SemTrack|https://sutdcv.github.io/SemTrack/|ECCV 2024|语义跟踪|
+|[HVTrack](https://arxiv.org/pdf/2408.02049)|https://github.com/Mumuqiao/HVTrack|ECCV 2024|3D|
+|[Diff-Tracker](https://arxiv.org/pdf/2407.08394)|无|ECCV 2024|diffusion、无监督、多模态|
+|[FERMT](https://eccv.ecva.net/virtual/2024/poster/1619)|paper 和 repo 都未发布|ECCV 2024|
 
 ## 其他
 | paper | repo | year| jyliu 观点 | kgmao 观点|
@@ -130,6 +139,7 @@ repo 列：
 |[MPOT、PRTrack](https://openaccess.thecvf.com/content/ICCV2023/papers/Zhang_Multiple_Planar_Object_Tracking_ICCV_2023_paper.pdf)|https://zzcheng.top/MPOT/|ICCV 2023|多平面追踪 (MPOT) 任务、PRTrack框架|
 |[Tracking by 3D Model Estimation of Unknown Objects in Videos](https://arxiv.org/pdf/2304.06419)|无|ICCV 2023|
 |[TAPIR](https://arxiv.org/pdf/2306.08637)|https://hengfan2010.github.io/projects/PlanarTrack/|ICCV 2023|点跟踪|
+|[OmniMotion](https://arxiv.org/pdf/2306.05422)|https://omnimotion.github.io/|ICCV 2023|点跟踪、伪深度|
 |[Context-PIP](https://openreview.net/pdf?id=cnpkzQZaLU)|https://wkbian.github.io/Projects/Context-PIPs/|NIPS 2023|点跟踪|
 |[KPA-Tracker](https://ojs.aaai.org/index.php/AAAI/article/view/28158/28317)|https://ojs.aaai.org/index.php/AAAI/article/view/28158/28317|AAAI 2024|姿态追踪|
 |[CodedEvents](https://openaccess.thecvf.com/content/CVPR2024/papers/Shah_CodedEvents_Optimal_Point-Spread-Function_Engineering_for_3D-Tracking_with_Event_Cameras_CVPR_2024_paper.pdf)|无|CVPR 2024||
@@ -140,5 +150,11 @@ repo 列：
 |[PapMOT](https://eccv.ecva.net/virtual/2024/poster/1816)|paper 和 repo 都未发布|ECCV 2024|对抗补丁攻击 (Adversarial Patch Attack)、MOT|
 |[AADN](https://arxiv.org/pdf/2402.17976)|无|ECCV 2024|对抗防御 (Adversarial Defense)、SOT|
 |[DINO-Tracker](https://arxiv.org/pdf/2403.14548)|https://dino-tracker.github.io/|ECCV 2024|点跟踪|
-
+|[ultrack](https://arxiv.org/pdf/2308.04526)|https://github.com/royerlab/ultrack|ECCV 2024|3D、细胞跟踪|
+|[LocoTrack](https://arxiv.org/pdf/2407.15420)|无|ECCV 2024|点跟踪|
+|[TAPTR](https://arxiv.org/pdf/2403.13042)|https://github.com/IDEA-Research/TAPTR|ECCV 2024|点跟踪|
+|[Trackastra](https://arxiv.org/pdf/2405.15700)|https://github.com/weigertlab/trackastra|ECCV 2024|细胞跟踪|
+|[GMRW](https://arxiv.org/pdf/2409.16288v1)|https://www.ayshrv.com/gmrw|ECCV 2024|点跟踪|
+|[FastOmniTrack](https://arxiv.org/pdf/2403.17931)|https://timsong412.github.io/FastOmniTrack/|ECCV 2024|点跟踪|
+|[DecoMotion](https://arxiv.org/pdf/2407.06531)|not release|ECCV 2024|点跟踪|
 ## 检测
