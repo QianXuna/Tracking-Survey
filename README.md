@@ -26,9 +26,9 @@ repo 列：
 |[MotionTrack](https://arxiv.org/pdf/2303.10404)|无|CVPR 2023|1. Track-by-detection范式<br>2. 改进短期关联，提出新的运动模型：不用KF预测track的位置，用自注意力、卷积建立一个交互矩阵，该矩阵建模了一个track对另一个track的影响，对交互矩阵用图卷积和MLP，预测位置的偏移量<br>3. 改进长期关联，提出新的关联模型和误差补偿模型：对丢失track的时间分布模式和速度-时间关系建模，得到相关性矩阵，再做匹配；用匹配到的检测和丢失track的预测来推理遮挡期间的预测误差，并完善track的预测|
 |[GHOST](https://arxiv.org/pdf/2206.04656)|https://github.com/dvl-tum/GHOST|CVPR 2023|1. Track-by-detection范式<br>2. 改进reID模型：在直方图上发现了inactive和active的track与检测的外观距离之间的差异很大的同时有很大的重叠面积，在此启发下认为计算inactive track和active track应该分别采取不同的处理方式计算和检测的外观距离，对inactive track采用proxy distance，缩小了直方图上inactive和active的重叠面积<br>3. 改进reID模型：动态域适应，在常规的人群reID数据集上训好reID模型，把这个模型在MOT数据集的每个sequence上训练BN层，看起来似乎BN层的训练和tracking的推理是同时进行的|
 |[OC-SORT](https://arxiv.org/pdf/2203.14360)|https://github.com/noahcao/OC_SORT|CVPR 2023|1. 改进Kalman Filter。遮挡情况下，Kalman Filter只根据上一时刻的预测结果预测当前时刻的位置，遮挡时间越长，误差积累越多。用遮挡前和遮挡后的检测框位置生成目标被遮挡期间的虚拟轨迹，利用虚拟轨迹进行Kalman<br>2. 提出角度损失angle_diff_cost|
-|[FineTrack](https://arxiv.org/pdf/2302.14589)|无|CVPR 2023||
+|[FineTrack](https://arxiv.org/pdf/2302.14589)|无|CVPR 2023|优化reID，从全局和局部等不同粒度描述外观|
 |[RMOT、Refer-KITTI、TransRMOT](https://arxiv.org/pdf/2303.03366)|https://github.com/wudongming97/RMOT|CVPR 2023|指代多目标跟踪 (RMOT) 任务、Refer-KiTTI 数据集、TransRMOT 框架|
-|[MOTRv2](https://arxiv.org/pdf/2211.09791)|https://github.com/noahcao/OC_SORT|CVPR 2023||
+|[MOTRv2](https://arxiv.org/pdf/2211.09791)|https://github.com/noahcao/OC_SORT|CVPR 2023|1. 引入 YOLOX 的输出作先验<br>2. proposal query ：用一个可学习的共享的 query 和 YOLOX 输出置信分数的加和<br>3. YOLOX proposals：YOLOX 输出的框坐标。当前帧的 YOLOX proposals 和 上一帧预测的框坐标 Yt-1 连接起来，作为 proposal query 的 anchor 点，两者之间做加和|
 |[OVTrack](https://arxiv.org/pdf/2304.08408)|https://www.vis.xyz/pub/ovtrack/|CVPR 2023|开放词汇|
 |[VoxelNeXt](https://arxiv.org/pdf/2303.11301)|https://github.com/dvlab-research/VoxelNeXt|CVPR 2023|3D 检测、3D tracking|
 |[PF-Track](https://arxiv.org/pdf/2302.03802)|https://github.com/TRI-ML/PF-Track|CVPR 2023|3D、multi-camera|
