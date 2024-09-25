@@ -157,4 +157,5 @@ repo 列：
 |[GMRW](https://arxiv.org/pdf/2409.16288v1)|https://www.ayshrv.com/gmrw|ECCV 2024|点跟踪|
 |[FastOmniTrack](https://arxiv.org/pdf/2403.17931)|https://timsong412.github.io/FastOmniTrack/|ECCV 2024|点跟踪|
 |[DecoMotion](https://arxiv.org/pdf/2407.06531)|not release|ECCV 2024|点跟踪|
+|[co-tracker](https://arxiv.org/pdf/2307.07635)|https://arxiv.org/pdf/2307.07635|ECCV 2024|点跟踪|
 ## 检测
