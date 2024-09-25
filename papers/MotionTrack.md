@@ -73,23 +73,49 @@ MotionTrack分为两步：
 
 ## Interaction Module
 构建track之间的定向交互以获得帧$t$的预测。分为两个阶段：
-- Interaction Extraction (交互提取)。如图3所示，连接绝对坐标矩阵和坐标偏移量矩阵，输入这个连接矩阵，经过一些操作，输出一个非对称交互矩阵，每个元素表示一个track对另一个track的影响。具体的操作有：
+- Interaction Extraction (交互提取)。连接绝对坐标矩阵和坐标偏移量矩阵。如图3所示，输入这个连接矩阵，经过一些操作，输出一个非对称交互矩阵，每个元素表示一个track对另一个track的影响。具体的操作有：
   - 连接矩阵先输入到自注意力模块
   - 为进一步考虑整个场景，如群体行为，将自注意力的结果，级联输入到非对称卷积模块
   - 为了捕获track之间的重要交互，只保留高注意力值
   - 归一化交互矩阵的所有非零元素
-- Motion Prediction (运动预测)。如图4所示，提取交互矩阵后具体的操作有：
+- Motion Prediction (运动预测)。输入交互矩阵。具体的操作有：
   - 使用图卷积来融合每个track的交互
   - 使用MLP获得偏移量预测
 - 与ByteTrack一样的关联策略：用匹配上的检测去更新存活的track，记录丢失的track的Interaction Module的预测
 <center><img src=../images/image-2.png style="zoom:50%"></center>
-<center><img src=../images/image.png style="zoom:50%"></center>
+
 ## Refind Module
-Refind Module：
-- 首先根据track的空间分布和速度-时间关系计算丢失的track与不匹配的检测之间的相关性，以获得相关矩阵
-- 然后保留高度相关的pairs，利用误差补偿来细化track
-- 最后结合短期和长期的关联来生成帧$t$的完整track结果
+重新找到丢失的轨迹。分为两个阶段：
+- Correlation Calculation (相关性计算)。在IoU关联后，得到了未匹配检测矩阵 $D^{rest}\in R^{U\times 5}$ 和丢失track矩阵$T^{lost}\in R^{S\times30\times5}$，30是指保留每个丢失track的最后30个存活的状态的位置，最后一维包括了时间和位置，即$(t,x,y,w,h)$。如图4所示，输入这两个矩阵，具体的操作有：
+  - 对$D^{rest}$和$T^{lost}$在最后一个维度上做归一化，然后分别提取特征：
+    1. 对$T^{lost}$的第二和第三维度上做非对称卷积，然后池化为特征向量$F^{traj}\in R^{S\times D}$
+    2. 计算检测与丢失track的最后1个存活状态的位置之间的difference，并且和检测连接起来$D^{\hat{rest}}\in R^{(S\times U)\times 10}$，然后将连接矩阵映射到高维特征$F^{dete}\in R^{(S\times U)\times D}$
+   - 连接$F^{traj}$和$F^{dete}$为特征矩阵$F\in R^{(S\times U)\times 2D}$，该矩阵建模了track的空间分布模式和速度-时间关系等信息
+   - 送入Fc+Sigmoid，得到correlation matrix
+   - 使用贪婪算法来选择具有高相关性得分的匹配对，并将剩余的不匹配检测初始化为新的track
+ - Error Compensation (误差补偿)。与其他插值方法不同，这里纠正预测的轨迹而不是生成新的轨迹
+   - 使用匹配到的检测$d^t$和丢失track的预测$p^t$来推理出遮挡期间的误差，并完善track的预测。
+<center><img src=../images/image-3.png style="zoom:50%"></center>
 
+其中track在$t_1$丢失，在$t_2$被重新发现
 
+<center><img src=../images/image.png style="zoom:50%"></center>
 
 ![alt text](../images/image-1.png)
+
+## Experiments
+### MOT17 test set
+![alt text](../images/image-4.png)
+### MOT20 test set
+![alt text](../images/image-5.png)
+### Interaction Module和Refind Module的消融实验
+![alt text](../images/image-6.png)
+### Interaction Module预测目标运动的能力
+![alt text](../images/image-8.png)
+比较预测精度，取所有目标的平均IoU来计算总IoU得分。结果表明，交互模块的引入比传统卡尔曼滤波器产生更准确的预测。同时，IDF1和AssA的稳步改进表明交互模块提高了预测精度并带来更强的关联能力
+### Refind Module处理长期遮挡的能力
+![alt text](../images/image-7.png)
+提高遮挡时间，比较模型处理长期遮挡的能力。前两种方法（DeepSORT和ByteTrack）由于大量错误关联而导致性能急剧下降，而本方法在处理长期遮挡方面取得了一致的改进
+### 人群遮挡的额外评估
+![alt text](../images/image-9.png)
+极端遮挡和密集人群并不总是出现在跟踪场景中。因此，评估整个数据集并不能反映我们直接解决这两个挑战性问题的能力。为了解决这个问题，本文建议将MOTA修改为crowdMOTA，它将数据集中可能被遮挡或拥挤的人分开，并评估这些人的跟踪性能。特别是，我们通过数据集中的可见性标签来选择人员，即当可见性低于 0.25 时，考虑人员拥挤或被遮挡。本文将连续遮挡或拥挤的最小帧数设置为 20 到 100，以验证不同难度级别样本的解决方案。如表5所示，不同难度样本的改进说明了本文的方法在解决密集人群和极端遮挡方面的有效性
