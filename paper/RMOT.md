@@ -37,6 +37,8 @@ https://arxiv.org/pdf/2303.03366
 - Refer-KITTI数据集
   - 低人力开销的数据标注：在KITTI的标注基础上，只需要点击动作的开始帧和结束帧，就会自动标注中间帧的标签
   - 15个训练视频、3个测试视频
+  - 和其他指代理解数据集的对比如表1所示
+<center><img src=../images/image-34.png style="zoom:50%"></center>
 
 - 评估指标
   - HOTA：整体 HOTA 是通过对不同句子query进行平均来计算的
@@ -109,3 +111,21 @@ https://arxiv.org/pdf/2303.03366
 - Transformer-based MOT：如下图(b)所示
   - 修改模型TransTrack：这是一个非完全的end-to-end模型，所以是对检测和tracking模型输出的IoU来确定指代的目标
 <center><img src=../images/image-31.png style="zoom:50%"></center>
+
+# Experiments
+## Refer-KITTI上的对比实验
+<center><img src=../images/image-35.png style="zoom:50%"></center>
+
+## 几个消融实验
+<center><img src=../images/image-36.png style="zoom:50%"></center>
+
+## 数据集划分消融实验
+<center><img src=../images/image-38.png style="zoom:50%"></center>
+
+## 泛化性分析
+正如之前的工作中所分析的，语言描述在识别泛化方面具有显着的优势。即使数据集中不存在新的表达，指代理解模型也可以通过学习现有的语言知识来推理所指对象。用“左边穿黑衣的人”，测试 TransRMOT。尽管 Refer-KITTI 包含一些简洁的表达，例如“the left people”和“thepeople in black”，但新表达并未包含在整个数据集中。在图10中，TransRMOT可以正确识别指代目标，显示了TransRMOT强大的泛化能力
+<center><img src=../images/image-37.png style="zoom:50%"></center>
+
+我的质疑：
+- 第3个表达式的语义是前2个表达式的语义的叠加，那么对这3个表达式用语言模型提取的特征中，应该是第3个包含了第1个和第2个的信息，所以第3个表达式可以认为是训练数据集中出现过的，那么能否通过“识别出第3个表达式指代的目标”就得出“强大的泛化能力”的结论？
+- RMOT应该默认train和test的目标类别是一致的，所以不用考虑类别的泛化性（这是一个open-vocabulary问题），我给1个表达式去test：“站着抽烟的人”，如果train中只有“站着的人”的语义，没有“抽烟”的语义，那么模型能否识别1个这样的表达式？如果不能，是否意味着模型没有考虑语义的泛化性？
