@@ -95,3 +95,17 @@ https://arxiv.org/pdf/2303.03366
 
 - final loss：
     <center><img src=../images/image-30.png style="zoom:50%"></center>
+
+# Supplementary Material
+## Competitor Details
+- 对常规MOT模型引入文本后的模型框架
+- CNN-based MOT：如下图(a)所示
+  - 在视觉backbone上设计了一个指代分支
+  - 包括跨模态融合模块和原始MOT模型的检测头
+  - 跨模态模块融合视觉和语言的特征，提供全面的特征表示
+  - 检测头将融合的特征图解码为与原始输出格式相同的目标框
+  - 训练过程中，保持预测所有可见目标的损失
+  - 个人理解：看起来是修改了检测器的架构，使得其能够检测特定语义的目标，即得到了一个[referring目标检测器]
+- Transformer-based MOT：如下图(b)所示
+  - 修改模型TransTrack：这是一个非完全的end-to-end模型，所以是对检测和tracking模型输出的IoU来确定指代的目标
+<center><img src=../images/image-31.png style="zoom:50%"></center>
