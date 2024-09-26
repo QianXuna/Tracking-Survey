@@ -68,12 +68,12 @@ repo 列：
 |[iKUN](https://arxiv.org/pdf/2312.16245)|https://github.com/dyhBUPT/iKUN|CVPR 2024||
 |[SLack](https://arxiv.org/pdf/2409.11235)|https://github.com/siyuanliii/SLAck|ECCV 2024|开放词汇|
 |[DepthMOT](https://arxiv.org/pdf/2404.05518)|https://github.com/JackWoo0831/DepthMOT|ECCV 2024 (×)||
-|[MOTP](https://arxiv.org/pdf/2403.16848)|https://github.com/MCG-NJU/MOTIP|ECCV 2024 (×)||
+|[MOTIP](https://arxiv.org/pdf/2403.16848)|https://github.com/MCG-NJU/MOTIP|ECCV 2024 (×)||
 |[MLT-Track](https://arxiv.org/pdf/2404.12031)|will be available: https://github.com/mzl163/MLS-Track|ECCV 2024 (×)|Refer-UE-City 数据集、RMOT|
 |[SMOT、BenSMOT、SMOTer](https://arxiv.org/abs/2403.05021)|https://github.com/HengLan/SMOT|ECCV 2024|语义多目标跟踪 (SMOT) 任务、BenSMOT 数据集、SMOTer 框架|
 |[LG-MOT](https://arxiv.org/pdf/2406.04844)|https://github.com/WesLee88524/LG-MOT|ECCV 2024 (×)|多模态|
 |[SPAM](https://arxiv.org/pdf/2404.11426)|无|ECCV 2024|MOT标注生成|
-|[BUSCA]|https://arxiv.org/pdf/2407.10151|https://github.com/lorenzovaquero/BUSCA|ECCV 2024||
+|[BUSCA](https://arxiv.org/pdf/2407.10151)|https://github.com/lorenzovaquero/BUSCA|ECCV 2024||
 |[VETRA](https://elib.dlr.de/205389/1/Hellekes_et_al_2024_VETRA_dataset_preprint.pdf)|https://elib.dlr.de/205389/1/Hellekes_et_al_2024_VETRA_dataset_preprint.pdf|ECCV 2024|航空图像、车辆跟踪|
 |[Walker](https://eccv.ecva.net/virtual/2024/poster/385)|paper 和 repo 都未发布|ECCV 2024|自监督|
 |[JDT3D](https://arxiv.org/pdf/2407.04926)|https://github.com/TRAILab/JDT3D|ECCV 2024|3D、Track-by-attention (TBA)|
