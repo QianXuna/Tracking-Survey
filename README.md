@@ -23,7 +23,7 @@ repo 列：
 
 ## 多目标
 
-| paper | repo | year| jyliu 观点| kgmao 观点|
+| paper | repo | year|<div style="width:800px;text-align: center">jyliu 观点</div>|<div style="width:800px;text-align: center">kgmao 观点</div>|
 | ----- | ---- | --- | ------------------------------ | ------------------------------ |
 |[MotionTrack](https://arxiv.org/pdf/2303.10404)|无|CVPR 2023|1. Track-by-detection范式<br>2. 改进短期关联，提出新的运动模型：不用KF预测track的位置，用自注意力、卷积建立一个交互矩阵，该矩阵建模了一个track对另一个track的影响，对交互矩阵用图卷积和MLP，预测位置的偏移量<br>3. 改进长期关联，提出新的关联模型和误差补偿模型：对丢失track的时间分布模式和速度-时间关系建模，得到相关性矩阵，再做匹配；用匹配到的检测和丢失track的预测来推理遮挡期间的预测误差，并完善track的预测|
 |[GHOST](https://arxiv.org/pdf/2206.04656)|<https://github.com/dvl-tum/GHOST>|CVPR 2023|1. Track-by-detection范式<br>2. 改进reID模型：在直方图上发现了inactive和active的track与检测的外观距离之间的差异很大的同时有很大的重叠面积，在此启发下认为计算inactive track和active track应该分别采取不同的处理方式计算和检测的外观距离，对inactive track采用proxy distance，缩小了直方图上inactive和active的重叠面积<br>3. 改进reID模型：动态域适应，在常规的人群reID数据集上训好reID模型，把这个模型在MOT数据集的每个sequence上训练BN层，看起来似乎BN层的训练和tracking的推理是同时进行的|
