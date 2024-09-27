@@ -62,6 +62,7 @@ https://arxiv.org/pdf/2304.08408
 ## Model design
 模型设计架构如图3所示
 <center><img src=../images/image-45.png style="zoom:50%"></center>
+
 ### Localization
 类别无关方法训练Faster R-CNN
 
@@ -91,8 +92,20 @@ https://arxiv.org/pdf/2304.08408
     - 我们进一步应用QDTrack提到的辅助损失 $L_{aux}$ 来约束下面的logits的大小
 ### Infer pipelne
 <center><img src=../images/image-47.png style="zoom:50%"></center>
-双向softmax见论文QDTrack
+双向softmax见论文QDTrack，bi-softmax下的高分表明两个匹配目标是特征空间中彼此最近的邻居
 <center><img src=../images/image-46.png style="zoom:50%"></center>
 
 ## Learning to track without video data
 DDPM
+
+# Experiments
+## Open-vocabulary MOT task: TAO val set and test set
+<center><img src=../images/image-48.png style="zoom:50%"></center>
+
+- Closed-set跟踪器：在 $C^{base}\cup C^{novel}$ 的类别上训练的
+- Open-vocabulary跟踪器：在 $C^{novel}$ 的类别上训练的
+- OVTrack：只见过静态图数据 （LVIS）
+- 最后一栏将RegionCLIP与baseline方法和OVTrack方法结合起来，其中用RegionCLIP替换OVTrack的定位和分类的部分
+
+## Closed-set MOT task: TAO val
+<center><img src=../images/image-49.png style="zoom:50%"></center>
