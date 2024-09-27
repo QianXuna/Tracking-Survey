@@ -22,17 +22,25 @@ repo 列：
 # Paper
 
 ## 多目标
-
+### Open Vocabulary MOT
 | paper | repo | year|jyliu 观点|kgmao 观点|
 | ----- | ---- | --- | -------- | ---------|
-|[TAO](https://arxiv.org/pdf/2005.10356)|[dataset](https://taodataset.org/)|ECCV 2020|1. Open-Vocabulary MOT<br>2. 跟踪模型的调参方法特别：基于MAP指标|
+|[TAO](https://arxiv.org/pdf/2005.10356)|[dataset](https://taodataset.org/)|ECCV 2020|跟踪模型的调参方法：基于MAP指标|
+|[AOA](https://arxiv.org/pdf/2101.08040)|[repo](https://github.com/feiaxyt/Winner_ECCV20_TAO)|ECCV-TAO-2020|集成几个模型|
+|[QDTrack](https://arxiv.org/pdf/2210.06984)|[repo](https://github.com/SysCV/qdtrack)|Arxiv 2022|对比学习、外观线索|
+|[GTR](https://arxiv.org/pdf/2203.13250)|[repo](https://github.com/xingyizhou/GTR)|CVPR 2022|1. Transformer<br>2. MOT17、TAO|
+|[TETer](https://arxiv.org/pdf/2207.12978)|[project](https://www.vis.xyz/pub/tet/)|ECCV 2022|1. TETA指标：定位、关联和分类<br>2. TETer跟踪器框架<br>3. benchmark：BDD100K、TAO|
+|[OVTrack](https://arxiv.org/pdf/2304.08408)|[project](<https://www.vis.xyz/pub/ovtrack/>)|CVPR 2023|1. 允许跟踪开放词汇表中未见过的种类<br>2. |
+|[SLack](https://arxiv.org/pdf/2409.11235)|[repo](<https://github.com/siyuanliii/SLAck>)|ECCV 2024||
+### Common MOT
+| paper | repo | year|jyliu 观点|kgmao 观点|
+| ----- | ---- | --- | -------- | ---------|
 |[MotionTrack](https://arxiv.org/pdf/2303.10404)|无|CVPR 2023|1. Track-by-detection范式<br>2. 改进短期关联，提出新的运动模型：不用KF预测track的位置，用自注意力、卷积建立一个交互矩阵，该矩阵建模了一个track对另一个track的影响，对交互矩阵用图卷积和MLP，预测位置的偏移量<br>3. 改进长期关联，提出新的关联模型和误差补偿模型：对丢失track的时间分布模式和速度-时间关系建模，得到相关性矩阵，再做匹配；用匹配到的检测和丢失track的预测来推理遮挡期间的预测误差，并完善track的预测|
 |[GHOST](https://arxiv.org/pdf/2206.04656)|[repo](<https://github.com/dvl-tum/GHOST>)|CVPR 2023|1. Track-by-detection范式<br>2. 改进reID模型：在直方图上发现了inactive和active的track与检测的外观距离之间的差异很大的同时有很大的重叠面积，在此启发下认为计算inactive track和active track应该分别采取不同的处理方式计算和检测的外观距离，对inactive track采用proxy distance，缩小了直方图上inactive和active的重叠面积<br>3. 改进reID模型：动态域适应，在常规的人群reID数据集上训好reID模型，把这个模型在MOT数据集的每个sequence上训练BN层，看起来似乎BN层的训练和tracking的推理是同时进行的|
 |[OC-SORT](https://arxiv.org/pdf/2203.14360)|[repo](<https://github.com/noahcao/OC_SORT>)|CVPR 2023|1. 改进Kalman Filter。遮挡情况下，Kalman Filter只根据上一时刻的预测结果预测当前时刻的位置，遮挡时间越长，误差积累越多。用遮挡前和遮挡后的检测框位置生成目标被遮挡期间的虚拟轨迹，利用虚拟轨迹进行Kalman<br>2. 提出角度损失angle_diff_cost|
 |[FineTrack](https://arxiv.org/pdf/2302.14589)|无|CVPR 2023|优化reID，从全局和局部等不同粒度描述外观|
 |[RMOT、Refer-KITTI、TransRMOT](https://arxiv.org/pdf/2303.03366)|[repo](<https://github.com/wudongming97/RMOT>)<br>[supplementary material](<https://openaccess.thecvf.com/content/CVPR2023/supplemental/Wu_Referring_Multi-Object_Tracking_CVPR_2023_supplemental.pdf>)|CVPR 2023|1. 指代多目标跟踪 (RMOT) 任务：给定语言表达作为参考，它的目标是为定位视频中所有语义匹配的目标<br>2. Refer-KiTTI 数据集：标注成本低。提供了一个高效的标注工具<br>3. TransRMOT 框架：end-to-end 模型，类似MOTR，主要区别是扩展encoder为cross-modal encoder，损失为track loss+detect loss，每种loss由是否存在目标、目标框位置、是否为表达式指代的目标组成|
 |[MOTRv2](https://arxiv.org/pdf/2211.09791)|[repo](<https://github.com/noahcao/OC_SORT>)|CVPR 2023|1. 引入 YOLOX 的输出作先验<br>2. proposal query ：用一个可学习的共享的 query 和 YOLOX 输出置信分数的加和<br>3. YOLOX proposals：YOLOX 输出的框坐标。当前帧的 YOLOX proposals 和 上一帧预测的框坐标 Yt-1 连接起来，作为 proposal query 的 anchor 点，两者之间做加和|
-|[OVTrack](https://arxiv.org/pdf/2304.08408)|[project](<https://www.vis.xyz/pub/ovtrack/>)|CVPR 2023|开放词汇|
 |[VoxelNeXt](https://arxiv.org/pdf/2303.11301)|[repo](<https://github.com/dvlab-research/VoxelNeXt>)|CVPR 2023|3D 检测、3D tracking|
 |[PF-Track](https://arxiv.org/pdf/2302.03802)|[repo](<https://github.com/TRI-ML/PF-Track>)|CVPR 2023|3D、multi-camera|
 |[UTM](https://openaccess.thecvf.com/content/CVPR2023/papers/You_UTM_A_Unified_Multiple_Object_Tracking_Model_With_Identity-Aware_Feature_CVPR_2023_paper.pdf)|无|CVPR 2023||
@@ -69,7 +77,6 @@ repo 列：
 |[Self-Supervised Multi-Object Tracking with Path Consistency](https://arxiv.org/pdf/2404.05136v1)|[repo](<https://github.com/amazon-science/path-consistency>)|CVPR 2024||
 |[DiffMOT](https://arxiv.org/abs/2403.02075)|[project](<https://diffmot.github.io/>)|CVPR 2024||
 |[iKUN](https://arxiv.org/pdf/2312.16245)|[repo](<https://github.com/dyhBUPT/iKUN>)|CVPR 2024||
-|[SLack](https://arxiv.org/pdf/2409.11235)|[repo](<https://github.com/siyuanliii/SLAck>)|ECCV 2024|开放词汇|
 |[DepthMOT](https://arxiv.org/pdf/2404.05518)|[repo](<https://github.com/JackWoo0831/DepthMOT>)|ECCV 2024 (×)||
 |[MOTIP](https://arxiv.org/pdf/2403.16848)|[repo](<https://github.com/MCG-NJU/MOTIP>)|ECCV 2024 (×)||
 |[MLT-Track](https://arxiv.org/pdf/2404.12031)|will be available: [repo](<https://github.com/mzl163/MLS-Track>)|ECCV 2024 (×)|Refer-UE-City 数据集、RMOT|
