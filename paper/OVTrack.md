@@ -68,7 +68,7 @@ https://arxiv.org/pdf/2304.08408
 
 ### Classification
 - 现存的closed-set跟踪器仅跟踪base类别的目标，即训练数据分布中出现的目标类别
-- 受到开放词汇检测文献ZSD的启发，将Fasst R-CNN和CLIP联系起来
+- 为了实现开放词汇分类，需要能够配置我们感兴趣的类而无需重新训练。受到开放词汇检测文献ZSD的启发，将Faster R-CNN和CLIP联系起来
   - 提取RoI的特征 $f_r = \mathcal{R}(\phi(I),\mathbf{b}_r),\forall r\in P$ ，r为RPN proposal输出得目标候选集合P的一个元素
   - 将Faster R-CNN的分类头换为一个文本头，还加了一个图像头，用于为每个$f_r$生成embeddings $\hat{t_r}$ 和 $\hat{i_r}$ ，用CLIP的文本和图像的encoder来监督这2个头。具体地：
     - 对于文本头：
@@ -78,8 +78,9 @@ https://arxiv.org/pdf/2304.08408
           <center><img src=../images/image-42.png style="zoom:50%"></center>
       - $t_{bg}$ 为一个可学习的背景prompt，$\lambda$ 为温度参数， $L_{CE}$ 为交叉熵损失， $c_r$ 为r的类别标注
     - 对于图像头：
-      - 用CLIP的图像encoder，对类别r，crop出一个输入图像为 $b_r$ ，获得ROI特征 $\mathbf{i}_r=\mathcal{I}(\mathcal{R}(I,\mathbf{b}_r))$ ，同理最小化 $\hat{i_r}$ 和 $i_r$ 之间的距离
+      - 用CLIP的图像encoder，对类别r，crop出一个输入图像为 $b_r$ ，获得图像embedding $\mathbf{i}_r=\mathcal{I}(\mathcal{R}(I,\mathbf{b}_r))$ ，同理最小化 $\hat{i_r}$ 和 $i_r$ 之间的距离
         <center><img src=../images/image-43.png style="zoom:50%"></center>
+        我的理解：这里没有说
 
 ### Association
 - 由于Open-vocabulary包含任意的场景、任意的相机模式、任意的目标运动模式，运动特征通常是脆弱的
