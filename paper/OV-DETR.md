@@ -55,7 +55,7 @@ DETR 管道的一次传递由两个主要步骤组成：
 给定一个数据集，其中包含训练集的标注，需要将这些标注转换为条件输入，具体来说：
 - 对每个有边界框 $b_i$ 和类别标签名 $y_i^{class}$ 的GT标注，使用CLIP生成对应的图像和文本embedding：
   <center><img src=../images/image-61.png style="zoom:50%"></center>
-- 可以选择其中任何一个作为输入query来影响(condition)DETR的decoder并训练以匹配相应的目标
+- 可以选择其中任何一个作为输入query来condition (意思可能是作为...的条件) DETR的decoder并训练以匹配相应的目标
 - 训练完成后，可以在测试期间采用任意输入query来执行开放词汇检测
 - 图像embedding $z_i^{image}$ 和文本embedding $z_i^{text}$ 作为query是等概率的，这是为了公平地学习
 - 类似于先前的方法 (如ViLD) ，为novel类别目标生成额外的目标提案来丰富训练数据，对其仅提取图像embedding作为条件输入，因为训练集中它们的类别名是无法获得的
@@ -66,5 +66,23 @@ DETR 管道的一次传递由两个主要步骤组成：
     <center><img src=../images/image-62.png style="zoom:50%"></center>
 
 - 将条件输入embedding z仅添加到一个object query中将导致对可能在图像中多次出现的目标的覆盖范围非常有限，而实际的数据集有多个相同和不同类别的目标示例，为了丰富条件匹配的训练信号：
-  - 本文在进行(5)式前，将object query q 复制了R次，将条件输入z复制了N次，最终获得了 $N\times R$ 大小的queries，如图4(b)所示
+  - 本文在进行(5)式前，将object query q 复制了R次，将条件输入z复制了N次，最终获得了 $N\times R$ 大小的queries，如图4(b)所示，补充材料中的材料将证明这种特征复制的重要性以及如何确定N和R
     <center><img src=../images/image-63.png style="zoom:50%"></center>
+    补充材料：
+    <center><img src=../images/image-68.png style="zoom:50%"></center>
+    <center><img src=../images/image-69.png style="zoom:50%"></center>
+- 为了最后的condition过程，类似于UP-DETR，进一步添加了一个注意力mask来确保不同queries副本之间的独立性
+- 标签分配的二进制匹配损失：
+  <center><img src=../images/image-64.png style="zoom:50%"></center>
+
+## Optimization
+- 在式子(6)后，就获得了不同object queries的优化分配标签 $\sigma$
+- 进一步将一个embedding reconstruction头加到模型中，该模型学习embedding e以便能够重建每个输入condition embedding
+    <center><img src=../images/image-65.png style="zoom:50%"></center>
+
+    补充材料证明了 $L_{embed}$ 的有效性
+- 模型的最终损失：
+    <center><img src=../images/image-66.png style="zoom:50%"></center>
+
+## Inference
+<center><img src=../images/image-67.png style="zoom:50%"></center>
