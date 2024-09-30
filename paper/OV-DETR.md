@@ -26,9 +26,9 @@ https://arxiv.org/pdf/2203.11876
 
 # Open-vocabulary DETR
 - 提出方法的动机：将具有Closed-set匹配的标准DETR改造为需要与未见过的类进行匹配的开放词汇检测器并非易事，这种开放集匹配的一种直观方法是学习一个类别无关的模块（例如ViLD）来处理所有类别
-- 本文提供了DETR中匹配任务的新视角：将固定的集合匹配目标重新表述为条件输入（文本或图像查询）和检测输出之间的条件二进制匹配
+- 本文提供了DETR中匹配任务的新视角：将固定的集合匹配目标重新表述为condition输入（文本或图像查询）和检测输出之间的条件二进制匹配
 - OV-DETR框架如图2所示：
-  - DETR输入从CLIP模型获得的text或image的query embedding作为条件输入
+  - DETR输入从CLIP模型获得的text或image的query embedding作为condition输入
   - 然后对检测结果施加二元匹配损失以衡量其匹配性
 <center><img src=../images/image-56.png style="zoom:50%"></center>
 
@@ -81,8 +81,27 @@ DETR 管道的一次传递由两个主要步骤组成：
     <center><img src=../images/image-65.png style="zoom:50%"></center>
 
     补充材料证明了 $L_{embed}$ 的有效性
+    补充材料：
+    <center><img src=../images/image-72.png style="zoom:50%"></center>
 - 模型的最终损失：
     <center><img src=../images/image-66.png style="zoom:50%"></center>
 
 ## Inference
 <center><img src=../images/image-67.png style="zoom:50%"></center>
+
+# Experiments
+## Mask R-CNN和Deformable DETR的对比实验
+<center><img src=../images/image-70.png style="zoom:50%"></center>
+
+## 目标提案(P)和conditional binary matching机制(M)的消融实验
+- 本文将Def DETR的分类层替换为了CLIP提供的文本embedding，并仅用base类别训练，这一步类似于ViLD-text的方法，如表2第1行所示
+- 将可能包含novel类别的目标区域的提案加入到训练阶段，因为我们不知道这些目标提案的类别，所以我们观察到这些目标提案的标签分配不准确，如表2第2行所示
+- 将DETR的默认闭集标签分配替换为我们提出的条件二元匹配，如表3第3行所示，表明二元匹配策略可以更好地利用目标提案中的知识
+
+<center><img src=../images/image-71.png style="zoom:50%"></center>
+
+## OV-LVIS、OV-COCO
+<center><img src=../images/image-73.png style="zoom:50%"></center>
+
+## Pascal VOC、COCO上的泛化性
+<center><img src=../images/image-74.png style="zoom:50%"></center>
