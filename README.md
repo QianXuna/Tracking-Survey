@@ -28,7 +28,7 @@ repo 列：
 |[TAO](https://arxiv.org/pdf/2005.10356)|[dataset](https://taodataset.org/)|ECCV 2020|跟踪模型的调参方法：基于MAP指标|
 |[AOA](https://arxiv.org/pdf/2101.08040)|[repo](https://github.com/feiaxyt/Winner_ECCV20_TAO)|ECCV-TAO-2020|集成几个模型|
 |[QDTrack](https://arxiv.org/pdf/2210.06984)|[repo](https://github.com/SysCV/qdtrack)|Arxiv 2022|对比学习、外观线索|
-|[GTR](https://arxiv.org/pdf/2203.13250)|[repo](https://github.com/xingyizhou/GTR)|CVPR 2022|1. Transformer<br>2. MOT17、TAO|
+|[GTR](https://arxiv.org/pdf/2203.13250)|[repo](https://github.com/xingyizhou/GTR)|CVPR 2022|1. Transformer<br>2. MOT17、TAO<br>3. 不是端到端结构、而且文章叙述乱且不清楚|
 |[TETer](https://arxiv.org/pdf/2207.12978)|[project](https://www.vis.xyz/pub/tet/)|ECCV 2022|1. TETA指标：定位、关联和分类<br>2. TETer跟踪器框架<br>3. benchmark：BDD100K、TAO|
 |[OVTrack](https://arxiv.org/pdf/2304.08408)|[project](<https://www.vis.xyz/pub/ovtrack/>)|CVPR 2023|1. 定义Open-vocabulary MOT: 允许跟踪开放词汇表中未见过的种类<br>2. 用嵌入头替换检测器（Faster R-CNN）的分类头，通过将目标提案的图像特征表征与相应的CLIP图像和文本嵌入对齐，学习出一个用于生成图像embedding的图像头和文本embedding的文本头，将CLIP中的知识蒸馏到我们的模型中<br>3. 用DDPM得到静态图像对，该对可以形成对检测器的跟踪头的监督，用有监督的对比损失函数来学习关联|
 |[SLack](https://arxiv.org/pdf/2409.11235)|[repo](<https://github.com/siyuanliii/SLAck>)|ECCV 2024||
@@ -173,5 +173,5 @@ repo 列：
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
 |[ViLD](https://arxiv.org/pdf/2104.13921)|[repo](https://github.com/jhoowy/ViLD)|ICLR 2022|CLIP、zero-shot detection|
-|[OV-DETR](https://arxiv.org/pdf/2203.11876)|[repo](https://github.com/yuhangzang/OV-DETR)|ECCV 2022|DETR、CLIP|
+|[OV-DETR](https://arxiv.org/pdf/2203.11876)|[repo](https://github.com/yuhangzang/OV-DETR)|ECCV 2022|DETR、用CLIP的图像/文本特征改造object query|
 |[DK-DETR](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Distilling_DETR_with_Visual-Linguistic_Knowledge_for_Open-Vocabulary_Object_Detection_ICCV_2023_paper.pdf)|[repo](https://github.com/hikvision-research/opera?tab=readme-ov-file)|ICCV 2023|DETR、CLIP|
