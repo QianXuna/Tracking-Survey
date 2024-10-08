@@ -19,18 +19,29 @@ https://arxiv.org/pdf/2207.12978
     <center><img src=../images/image-85.png style="zoom:50%"></center>
 
 ## Associating Every Thing
-- 不同类别的运动线索是不规则的，所以使用外观线索
-  - 不相信目标检测器的类别预测并将其作为硬先验，而是通过直接对比不同类别的样例来学习类别示例
-  - 在关联过程中，使用类别示例来确定每个目标的潜在匹配候选目标。这一过程可以看作是将类别信息作为软先验信息来使用。因此，它可以整合分类所需的细粒度线索（例如，红色大巴士和红色卡车之间的区别）
+不同类别的运动线索是不规则的，所以使用外观线索
+- 不相信目标检测器的类别预测并将其作为硬先验，而是通过直接对比不同类别的样例来学习类别示例
+- 在关联过程中，使用类别示例来确定每个目标的潜在匹配候选目标。这一过程可以看作是将类别信息作为软先验信息来使用。因此，它可以整合分类所需的细粒度线索（例如，红色大巴士和红色卡车之间的区别）
 
 ## Class Exemplar Matching (CEM)
 训练pipeline基于两阶段检测器，如图7所示，具体如下：
-- RPN计算输入图片的所有RoI提议
+- RPN计算输入图片的所有RoI proposals
 - 使用RoI align从多尺度特征输出中提取特征图
-- 特征图输入到exemplar encoder中来学习类别相似度，exemplar encoder为每个RoI生成类别示例
+- 特征图输入到exemplar encoder中来学习类别相似度，exemplar encoder为每个RoI生成类别exemplar
 - 用定位阈值 $\alpha$ 为每个RoI分配类别标签
   - 如果一个RoI和一个Ground truth的IoU高于 $\alpha$ ，就给RoI分配对应的类别标签
   - 正样本是来自同一类别的RoI，负样本是来自不同类别的RoI
   - 修改SupCon loss，并提出一个不平衡的监督对比损失 (U-SupCon)：
     <center><img src=../images/image-87.png style="zoom:50%"></center>
+    <center><img src=../images/image-93.png style="zoom:50%"></center>
 <center><img src=../images/image-86.png style="zoom:50%"></center>
+
+## Association Strategy
+- 假设在第t帧，query目标q有类别examplar $q_c$， 在第t+1帧有检测出的目标D和它们的类别exemplars的集合 $d_c \in D_c$ 
+- 计算 $q_c$ 和 $D_c$ 之间的相似度，并筛选高相似度的候选者，得到一个候选者列表
+- 要从候选者列表中确定最终匹配结果，可以使用任何现有的关联方法
+  - 在最终模型TETer中，进一步利用准密集相似性学习（quasi-dense similarity learning）来学习实例级关联的实例特征
+  - 使用双向softmax和余弦相似性计算 C 中每个候选者的实例级匹配得分。选取得分最大的候选者
+
+## Temporal Class Correction (TCC)
+AET 策略允许我们利用丰富的时间信息来修正分类。如果我们跟踪一个物体，我们假定其类别标签在整个跟踪过程中都是一致的。我们使用简单的多数票来修正每帧的类别预测
