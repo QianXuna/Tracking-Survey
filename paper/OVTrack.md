@@ -26,7 +26,7 @@ https://arxiv.org/pdf/2304.08408
 
 # Related Work
 - Multiple object tracking
-  - 过去的方法像GTR、AOA、QDTrack、TET受限于预先设定的目标种类，所以不能扩展到真实世界多样性的设定中，而本文的工作允许跟踪开放词汇表中未见过的种类
+  - 过去的方法像GTR、AOA、QDTrack、TETer受限于预先设定的目标种类，所以不能扩展到真实世界多样性的设定中，而本文的工作允许跟踪开放词汇表中未见过的种类
 - Open-world detection and tracking
   - 开放世界检测
     - 利用类不可知的定位器并将分类视为聚类问题，估计新实例之间的相似性并通过增量学习将它们分组为新

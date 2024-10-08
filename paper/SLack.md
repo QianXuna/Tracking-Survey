@@ -61,6 +61,12 @@ https://arxiv.org/pdf/2409.11235
 <center><img src=../images/image-83.png style="zoom:50%"></center>
 
 ## Extract Semantic, Location, and Appearance Cues
+- 基于和TETer、OVTrack相同的目标检测器上构建跟踪器
+- 在关联过程中冻结了所有检测器组件，以保持原有的强大开放词汇检测能力
+### Semantic Head
+- 使用和OVTrack相同的检测器，由于直接使用CLIP的encoder做语义线索会产生极高的推理成本，所以就对CLIP的文本encoder的知识蒸馏到RCNN分类头，用这个头来产生语义线索
+- 在分类头后加一个5层MLP来将语义特征投影到最终的语义embedding $E_{sem}$ 
+- 对于close-set的设定，使用TETer的将策骑，使用其CEM编码作为语义头的输入
 ## Spatial-Temporal Object Graph (STOG)
 ## Association Loss
 ## Detection Aware Training (DAT)
