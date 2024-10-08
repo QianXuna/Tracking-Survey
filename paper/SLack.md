@@ -63,10 +63,27 @@ https://arxiv.org/pdf/2409.11235
 ## Extract Semantic, Location, and Appearance Cues
 - 基于和TETer、OVTrack相同的目标检测器上构建跟踪器
 - 在关联过程中冻结了所有检测器组件，以保持原有的强大开放词汇检测能力
+
 ### Semantic Head
 - 使用和OVTrack相同的检测器，由于直接使用CLIP的encoder做语义线索会产生极高的推理成本，所以就对CLIP的文本encoder的知识蒸馏到RCNN分类头，用这个头来产生语义线索
 - 在分类头后加一个5层MLP来将语义特征投影到最终的语义embedding $E_{sem}$ 
-- 对于close-set的设定，使用TETer的将策骑，使用其CEM编码作为语义头的输入
+- 对于close-set的设定，使用TETer的检测器，使用其CEM编码作为语义头的输入
+
+### Location Head
+位置头将检测器的边界框头的输出作为输入，将其投影到特征空间中，具体的：
+- 边界框坐标相对于图像尺寸进行归一化处理，以确保比例不变性，归一化过程包括相对于图像中心和尺寸的坐标缩放和平移
+  - 给定边界框的坐标 $[x_{min}, y_{min}, x_{max}, y_{max}]$ ，图像尺寸 $[H,W]$
+  - 图像中心 $(C_x,C_y)$ 的计算方法是 $C_x=\frac{W}{2}, C_y=\frac{H}{2}$ ，缩放比例为最大图像维度的 70%，即：$scaling = 0.7 \times max(H,W)$，归一化后的边界框的计算方法是：
+    <center><img src=../images/image-94.png style="zoom:50%"></center>
+  - 此归一化步骤确保图像内对象的空间位置相对于图像尺寸得以保留，从而促进尺度不变的位置特征
+- 将归一化后的坐标输入到位置头来获得位置embedding $E_{loc}$
+- 对于close-set的设定，将相应的置信度c和框坐标一起包含在内
+
+### Appearance Head
+外观头将RoI特征embeddings作为输入，输出针对关联优化过的外观embeddings，具体的：
+- 外观头是一个简单的四层卷积，带有一个附加的MLP，输出为 $E_{app}$
+
+
 ## Spatial-Temporal Object Graph (STOG)
 ## Association Loss
 ## Detection Aware Training (DAT)
