@@ -51,3 +51,16 @@ https://arxiv.org/pdf/2409.11235
 本文方法：在早期就整合了所有有价值的信息，最终形成了一个奇异的匹配矩阵。这种早期融合避免了启发式的复杂性，提高了泛化能力，尤其是对novel类别的泛化能力
 
 ## Method Overview
+- 基于预训练的开放或大型词汇检测器
+- 从检测器中直接提取所有的信息，如语义、位置和外观，这些信息用一个时空目标图来推理出关联分配
+- 本文方法是端到端的，无需任何额外的启发式方法来融合不同信息
+- 借鉴Superglue论文，本文模型使用差分Sinkhorn-Knopp算法简单输出分配矩阵
+- Detection Aware Training：直接使用检测框和TAO的稀疏Ground Truth作为关联学习的输入
+- 完整的框架见图4
+
+<center><img src=../images/image-83.png style="zoom:50%"></center>
+
+## Extract Semantic, Location, and Appearance Cues
+## Spatial-Temporal Object Graph (STOG)
+## Association Loss
+## Detection Aware Training (DAT)
