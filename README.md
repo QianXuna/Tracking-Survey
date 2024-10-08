@@ -33,6 +33,7 @@ repo 列：
 |[OVTrack](https://arxiv.org/pdf/2304.08408)|[project](<https://www.vis.xyz/pub/ovtrack/>)|CVPR 2023|1. 定义Open-vocabulary MOT: 允许跟踪开放词汇表中未见过的种类<br>2. 用嵌入头替换检测器（Faster R-CNN）的分类头，通过将目标提案的图像特征表征与相应的CLIP图像和文本嵌入对齐，学习出一个用于生成图像embedding的图像头和文本embedding的文本头，将CLIP中的知识蒸馏到我们的模型中<br>3. 用DDPM得到静态图像对，该对可以形成对检测器的跟踪头的监督，用有监督的对比损失函数来学习关联|
 |[MASA](https://arxiv.org/pdf/2406.04221)|[project](https://matchinganything.github.io/)|CVPR 2024||
 |[SLack](https://arxiv.org/pdf/2409.11235)|[repo](<https://github.com/siyuanliii/SLAck>)|ECCV 2024||
+
 ### Common MOT
 | paper | repo | year|jyliu 观点|kgmao 观点|
 | ----- | ---- | --- | -------- | ---------|
@@ -140,7 +141,7 @@ repo 列：
 |[FERMT](https://eccv.ecva.net/virtual/2024/poster/1619)|paper 和 repo 都未发布|ECCV 2024|
 
 ## 其他
-
+### Tracking
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
 |[GarmentTracking](https://arxiv.org/pdf/2303.13913)|<https://garment-tracking.robotflow.ai/>|CVPR 2023|服装跟踪|
@@ -169,6 +170,10 @@ repo 列：
 |[FastOmniTrack](https://arxiv.org/pdf/2403.17931)|<https://timsong412.github.io/FastOmniTrack/>|ECCV 2024|点跟踪|
 |[DecoMotion](https://arxiv.org/pdf/2407.06531)|not release|ECCV 2024|点跟踪|
 |[co-tracker](https://arxiv.org/pdf/2307.07635)|<https://arxiv.org/pdf/2307.07635>|ECCV 2024|点跟踪|
+### GNN
+| paper | repo | year| jyliu 观点 | kgmao 观点|
+| ----- | ---- | --- | ---------- | --------- |
+|[Superglue](https://arxiv.org/pdf/1911.11763)|[repo](https://github.com/magicleap/SuperGluePretrainedNetwork)|CVPR 2020 oral|||
 
 ## 检测
 | paper | repo | year| jyliu 观点 | kgmao 观点|
