@@ -85,5 +85,60 @@ https://arxiv.org/pdf/2409.11235
 
 
 ## Spatial-Temporal Object Graph (STOG)
+时空目标图STOG通过利用帧内self-attention和帧间cross-attention机制的组合 (follow的论文是Superglue)，编码了丰富的语义、位置和外观模式，这些模式对于理解开放世界tracking的目标动态是必要的
+
+### Feature Fusion in STOG
+- STOG前，每个目标通过一组不同但互补的特征进行表征： $E_{sem}$ $E_{loc}$ $E_{app}$
+- STOG模型将每个目标的外观、位置和语义特征融合成统一的表征来初始化其过程，i表示帧内的第i个目标：
+  <center><img src=../images/image-95.png style="zoom:50%"></center>
+- 融合embeddings作为STOG的输入，通过帧内self-attention和帧间cross-attention机制进一步处理
+  - 帧内的self-attention根据目标的相对位置和视觉相似性来完善对目标的理解
+  - 帧间的cross-attention捕获目标的时间演化
+
+### Intra-Frame Self-Attention
+ljy：它定义了关键帧 (key frame) 和参考帧 (reference frame) ，应该一个是指轨迹的一帧，一个是指下一帧 (有检测)  
+- 帧内self-attention独立处理关键帧和参考帧中的目标，来分析它们的空间关系和交互，对于keyframe (K) 和reference frame (R)，self-attention (SA) 的操作定义：
+  <center><img src=../images/image-96.png style="zoom:50%"></center>
+  
+  其中， $\sigma$ 为softmax
+- 此步骤通过关注每个目标与上下文最相关的特征，增强了模型对复杂的帧内目标排列和交互的理解
+
+### Inter-Frame Cross-Attention
+- 帧间cross-attention (CA)独立处理关键帧和参考帧，目的是跨帧对齐和更新目标特征，这捕捉了跟踪目标所必须的时间依赖性，目标从关键帧转换到参考帧以及反之的交叉注意操作被形式化为：
+  <center><img src=../images/image-97.png style="zoom:50%"></center>
+
 ## Association Loss
+给定一对帧，目标是计算这些帧中的目标之间进行正确匹配的损失。此过程涉及生成目标匹配矩阵，然后应用 Sinkhorn 算法来计算最优传输问题的可微近似。损失计算如下：
+
+### Target Match Matrix Computation
+对每对关键帧和参考帧构建一个二进制目标匹配矩阵T，表示跨帧目标之间的匹配
+- T中每个元素 $T_{ij}$ 为1或者0
+- 为表示找不到匹配的目标 (目标消失或出现)，使用特殊的类‘dustbin’表示，将T扩展为T'，尺寸为 $(M+1) \times (N+1)$，M和N表示两个帧中的目标个数
+
+### Training Loss
+整个开放词汇跟踪框架可以使用 Sinkhorn 算法以端到端的方式进行训练，为最优传输问题提供了可微分的解决方案，具体的：
+- 给定模型中的得分矩阵S (表示关键帧和参考帧中的对象之间的预测亲和力)，以及增强目标匹配矩阵 T'，Sinkhorn 损失 $L_{Sinkhorn}$ 计算如下：
+  <center><img src=../images/image-98.png style="zoom:50%"></center>
+
+  
 ## Detection Aware Training (DAT)
+为了解决不完整的注释问题，同时又不影响我们预先训练的开放词汇检测器的检测能力，为我们在 TAO 视频训练期间冻结检测器的权重。这确保了探测器的性能保持不变。为了适应稀疏注释，我们采用了一种策略，检测器首先推断训练视频上的边界框，在训练和测试阶段保持输入数据的一致性。我们仅在这些预测框与可用的地面实况之间存在匹配时计算关联损失，忽略不匹配的对。事实证明，该方法对于 MOT 任务中的端到端训练非常有效，通过在训练过程中密切复制测试条件，可以显着提高性能
+
+# Experiment
+## 语义感知性能的消融实验
+<center><img src=../images/image-99.png style="zoom:50%"></center>
+
+## DAT性能的消融实验
+<center><img src=../images/image-100.png style="zoom:50%"></center>
+
+## 整合语义线索进行关联的不同方法比较
+<center><img src=../images/image-101.png style="zoom:50%"></center>
+
+## 开放词汇MOT对比试验
+<center><img src=../images/image-102.png style="zoom:50%"></center>
+
+## STOG性能的消融实验
+<center><img src=../images/image-103.png style="zoom:50%"></center>
+
+## Close-set MOT对比实验
+<center><img src=../images/image-104.png style="zoom:50%"></center>
