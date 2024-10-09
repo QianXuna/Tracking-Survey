@@ -32,7 +32,7 @@ repo 列：
 |[TETer](https://arxiv.org/pdf/2207.12978)|[project](https://www.vis.xyz/pub/tet/)|ECCV 2022|1. TETA指标：定位、关联和分类<br>2. TETer跟踪器框架<br>3. benchmark：BDD100K、TAO|
 |[OVTrack](https://arxiv.org/pdf/2304.08408)|[project](<https://www.vis.xyz/pub/ovtrack/>)|CVPR 2023|1. 定义Open-vocabulary MOT: 允许跟踪开放词汇表中未见过的种类<br>2. 用嵌入头替换检测器（Faster R-CNN）的分类头，通过将目标提案的图像特征表征与相应的CLIP图像和文本嵌入对齐，学习出一个用于生成图像embedding的图像头和文本embedding的文本头，将CLIP中的知识蒸馏到我们的模型中<br>3. 用DDPM得到静态图像对，该对可以形成对检测器的跟踪头的监督，用有监督的对比损失函数来学习关联|
 |[MASA](https://arxiv.org/pdf/2406.04221)|[project](https://matchinganything.github.io/)|CVPR 2024||
-|[SLack](https://arxiv.org/pdf/2409.11235)|[repo](<https://github.com/siyuanliii/SLAck>)|ECCV 2024||
+|[SLack](https://arxiv.org/pdf/2409.11235)|[repo](<https://github.com/siyuanliii/SLAck>)|ECCV 2024|1. Tracking-by-detection的范式，和TETer、OVTrack相同的目标检测器上构建跟踪器<br>2. 检测器上使用语义头、位置头、外观头，得到语义、位置、外观的embedding，将三者做加来融合<br>3. 在帧内对融合后的特征使用self-attention，在帧间使用cross-attention<br>4. 用ground truth构建匹配矩阵，使用Sinkhorn损失来更新softmax归一化的得分矩阵，这是个最优传输问题<br>5. 为了使用TAO数据集的稀疏标注，检测器首先推断训练视频上的边界框，在训练和测试阶段保持输入数据的一致性。仅在这些预测框与可用的ground truth之间存在匹配时计算关联损失，忽略不匹配的对||
 
 ### Common MOT
 | paper | repo | year|jyliu 观点|kgmao 观点|
