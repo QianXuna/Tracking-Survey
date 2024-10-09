@@ -8,6 +8,13 @@ https://arxiv.org/pdf/2207.12978
 - 提出Track Every Thing tracker (TETer) 
   - 使用类别示例匹配 (Class Exemplar Matching, CEM) 来进行关联
   - BDD100K、TAO：SOTA
+# Instruction
+- Association-Every-Thing (AET) 策略：不同于以前的方法只关联相同的类别，而是将相邻帧中的每个目标关联起来，将关联从大规模长尾条件下具有挑战性的分类/检测问题中解放出来。
+  - 难点：关联过程中完全忽略了类别信息
+  - 本文方法：引入类别样本匹配Class Exemplar Matching (CEM)
+    - CEM学习的类别样本以soft方式合并有价值的类别信息
+    - CEM可以有效利用大规模检测数据集的语义监督，不依赖于常常不正确的分类输出
+
 
 # Tracking-Every-Thing Tracker
 模型框架如图5所示
