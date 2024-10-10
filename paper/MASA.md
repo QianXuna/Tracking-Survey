@@ -55,7 +55,7 @@ https://arxiv.org/pdf/2406.04221
   - 考虑到目标形状和大小的多样性，构建了一个多尺度特征金字塔
     - 对于像Detic、Grounding-DINO中的Swin Transformer的分层backbones，直接使用FPN
     - 对于使用普通ViT backbone的SAM，使用transpose convolution (反卷积) 和 maxpooling 对步长为16的单尺度特征进行上采样和下采样，来生成尺度比为1/4, 1/8, 1/16, 1/32 的分层特征
-  - 为了有效地学习不同实例的区分特征，一个位置的目标必须了解其他位置的实例的外观，像DynamicHead一样，使用Deformable Convolution来生成动态offset并聚合跨空间位置和特征层的信息：
+  - 为了有效地学习不同实例的区分特征，一个位置的目标必须了解其他位置的实例的外观，像DynamicHead (https://zhuanlan.zhihu.com/p/381481382) 一样，使用Deformable Convolution (https://zhuanlan.zhihu.com/p/335147713) 来生成动态offset并聚合跨空间位置和特征层的信息：
       <center><img src=../images/image-108.png style="zoom:50%"></center>
       
       其中L表示特征层数，K为卷积核的采样位置个数，wk和pk分别为卷积核的权重和预定义的第k个位置的offset， $\Delta p_k^j$ 和 $\Delta m_k^j$ 分别为第k个位置第j层特征层的可学洗的offset和调制因子
