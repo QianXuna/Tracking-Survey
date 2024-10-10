@@ -20,6 +20,12 @@ repo 列：
 |[ECCV 2024](https://eccv2024.ecva.net/virtual/2024/papers.html?filter=titles)|<https://github.com/amusi/ECCV2024-Papers-with-Code>|2024||
 
 # Paper
+## 检测
+| paper | repo | year| jyliu 观点 | kgmao 观点|
+| ----- | ---- | --- | ---------- | --------- |
+|[ViLD](https://arxiv.org/pdf/2104.13921)|[repo](https://github.com/jhoowy/ViLD)|ICLR 2022|CLIP、zero-shot detection|
+|[OV-DETR](https://arxiv.org/pdf/2203.11876)|[repo](https://github.com/yuhangzang/OV-DETR)|ECCV 2022|DETR、用CLIP的图像/文本特征改造object query|
+|[DK-DETR](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Distilling_DETR_with_Visual-Linguistic_Knowledge_for_Open-Vocabulary_Object_Detection_ICCV_2023_paper.pdf)|[repo](https://github.com/hikvision-research/opera?tab=readme-ov-file)|ICCV 2023|DETR、CLIP|
 
 ## 多目标
 ### Open Vocabulary MOT
@@ -174,10 +180,3 @@ repo 列：
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
 |[Superglue](https://arxiv.org/pdf/1911.11763)|[repo](https://github.com/magicleap/SuperGluePretrainedNetwork)|CVPR 2020 oral|||
-
-## 检测
-| paper | repo | year| jyliu 观点 | kgmao 观点|
-| ----- | ---- | --- | ---------- | --------- |
-|[ViLD](https://arxiv.org/pdf/2104.13921)|[repo](https://github.com/jhoowy/ViLD)|ICLR 2022|CLIP、zero-shot detection|
-|[OV-DETR](https://arxiv.org/pdf/2203.11876)|[repo](https://github.com/yuhangzang/OV-DETR)|ECCV 2022|DETR、用CLIP的图像/文本特征改造object query|
-|[DK-DETR](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Distilling_DETR_with_Visual-Linguistic_Knowledge_for_Open-Vocabulary_Object_Detection_ICCV_2023_paper.pdf)|[repo](https://github.com/hikvision-research/opera?tab=readme-ov-file)|ICCV 2023|DETR、CLIP|
