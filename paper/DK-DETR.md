@@ -89,8 +89,25 @@ text-based分类器的步骤：
 - 本文方法：如图4所示，给定VLM的visual embeddings **V** 和 KD features $F^{kd}$，用两个成对相似矩阵来分别表示VLM features和KD features的关系： VLM关系图 $R^v=\bar{F}\bar{F}^T\in\mathbb{R}^{N\times N}$，KD关系图 $R^{kd}=\bar{V}\bar{V}^T\in\mathbb{R}^{N\times N}$，其中 $\bar{F}$ 和 $\bar{V}$ 分别为L2标准化过的 **V** 和 $F^{kd}$ ，这两个相似性矩阵捕获了目标之间的成对相关性，我们引导来自蒸馏分支的矩阵 $R^{kd}$ 与来自 VLM 图像编码器的 $R^v$ 对齐：
   <center><img src=../images/image-122.png style="zoom:50%"></center>
 
+  - 值得注意的是，单个图像中的目标之间的关系只是可以捕获的一种相关性。还有其他关系也可以帮助模型，例如来自不同图像的目标之间的关系，这将在消融实验中进一步讨论
   <center><img src=../images/image-121.png style="zoom:50%"></center>
 
 ## Loss Functions
+<center><img src=../images/image-123.png style="zoom:50%"></center>
+<center><img src=../images/image-124.png style="zoom:50%"></center>
 
 # Experiments
+## LVIS数据集对比试验
+<center><img src=../images/image-126.png style="zoom:50%"></center>
+
+## COCO开放词汇数据集对比试验
+<center><img src=../images/image-127.png style="zoom:50%"></center>
+
+## 泛化能力实验
+<center><img src=../images/image-128.png style="zoom:50%"></center>
+
+## SKD、RKD、KD queries性能的消融实验
+<center><img src=../images/image-129.png style="zoom:50%"></center>
+
+## RKD不同关系类型的消融实验
+<center><img src=../images/image-125.png style="zoom:50%"></center>
