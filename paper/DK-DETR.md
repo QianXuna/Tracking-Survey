@@ -83,7 +83,7 @@ text-based分类器的步骤：
 
 ## Relational Knowledge Distillation
 - 动机：
-  - SKD是一种对两种features的直接对齐
+  - SKD是对两种features的直接对齐
   - 两个目标之间的relation反映它们的correspondence，如在VLM embedding space中，一个老虎可能比狗更接近猫，如果将这些知识蒸馏给检测器，它可能帮助检测器在推理过程中避免将老虎识别为狗
 - 目的：建模并蒸馏图片中不同个体目标之间的关系
 - 本文方法：如图4所示，给定VLM的visual embeddings **V** 和 KD features $F^{kd}$，用两个成对相似矩阵来分别表示VLM features和KD features的关系： VLM关系图 $R^v=\bar{F}\bar{F}^T\in\mathbb{R}^{N\times N}$，KD关系图 $R^{kd}=\bar{V}\bar{V}^T\in\mathbb{R}^{N\times N}$，其中 $\bar{F}$ 和 $\bar{V}$ 分别为L2标准化过的 **V** 和 $F^{kd}$ ，这两个相似性矩阵捕获了目标之间的成对相关性，我们引导来自蒸馏分支的矩阵 $R^{kd}$ 与来自 VLM 图像编码器的 $R^v$ 对齐：
