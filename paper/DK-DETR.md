@@ -114,3 +114,6 @@ text-based分类器的步骤：
 
 问题：
 - 代码实现，整体流程怎么做
+- 局部问题：
+  - 用于蒸馏decoder的content queries为什么要去掉base类别，只留下novel类别？原文见：
+    <center><img src=../images/image-130.png style="zoom:50%"></center>
