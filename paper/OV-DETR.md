@@ -46,7 +46,7 @@ DETR 管道的一次传递由两个主要步骤组成：
 
 ### challenge
 - 二分匹配方法不能直接应用到包含base和novel的开放词汇的设定中，原因是：计算3式需要获得标签信息，但是这对novel类别来说是不可获得的
-- 如果参照先前的方法 (如ViLD) 生成类别无关的目标提议，这些提议可能会覆盖novel类别的目标，但问题仍然是不知道这些提案的真实分类标签，所以结果仍然是目标queries的预测不能泛化到Novel的类别
+- 如果参照先前的方法 (如ViLD) 生成类别无关的目标候选框，这些候选框可能会覆盖novel类别的目标，但问题仍然是不知道这些候选框的真实分类标签，所以结果仍然是目标queries的预测不能泛化到Novel的类别
 - 如图3(a)所示，只能对具有可用训练标签的base类别执行二分匹配
 <center><img src=../images/image-60.png style="zoom:50%"></center>
 
@@ -61,7 +61,7 @@ DETR 管道的一次传递由两个主要步骤组成：
 - 类似于先前的方法 (如ViLD) ，为novel类别目标生成额外的目标提案来丰富训练数据，对其仅提取图像embedding作为条件输入，因为训练集中它们的类别名是无法获得的
 
 ### Conditional Matching
-本文核心训练目标是测量条件输入embedding和检测结果之间的匹配性，具体来说：
+本文核心训练目标是衡量条件输入embedding和检测结果之间的匹配度，具体来说：
 - 用一个全连接网络将条件输入的embedding ( $z_i^{image}$ 或 $z_i^{text}$ )投影到和object query $q$ 有相同的维度，然后将2个embedding相加作为decoder的输入：
     <center><img src=../images/image-62.png style="zoom:50%"></center>
 
