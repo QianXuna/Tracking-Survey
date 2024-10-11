@@ -111,3 +111,6 @@ text-based分类器的步骤：
 
 ## RKD不同关系类型的消融实验
 <center><img src=../images/image-125.png style="zoom:50%"></center>
+
+问题：
+- 代码实现，整体流程怎么做

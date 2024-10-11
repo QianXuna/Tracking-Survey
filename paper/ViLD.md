@@ -18,3 +18,6 @@ https://zhuanlan.zhihu.com/p/369464298
       - 个人理解：由于ViLD-text和ViLD-image受监督的类别不同，所以候选框个数也不同 (N、M)
     - 推理阶段，Text embeddings是将所有的base+novel类别送入到CLIP text encoder产生的，如图2所示
     - 作者认为模型是从base类别的标注中训练的，而是在base+novel类别上测试的，所以确实是开放词汇检测任务
+
+问题：
+- 推理阶段怎么区分背景和novel类别目标
