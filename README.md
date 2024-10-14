@@ -177,6 +177,7 @@ repo 列：
 |[FastOmniTrack](https://arxiv.org/pdf/2403.17931)|<https://timsong412.github.io/FastOmniTrack/>|ECCV 2024|点跟踪|
 |[DecoMotion](https://arxiv.org/pdf/2407.06531)|not release|ECCV 2024|点跟踪|
 |[co-tracker](https://arxiv.org/pdf/2307.07635)|<https://arxiv.org/pdf/2307.07635>|ECCV 2024|点跟踪|
+|[LaMOT](https://arxiv.org/pdf/2406.08324)|[repo](https://arxiv.org/pdf/2406.08324)|arxiv 2024.6|OVMOT+RMOT|
 ### GNN
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
