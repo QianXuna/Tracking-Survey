@@ -50,8 +50,26 @@ DETR的问题：
 - 所提出的（多尺度）可变形注意模块也可以被视为 Transformer 注意力有效变体，其中通过可变形采样位置引入预过滤机制。当采样点遍历所有可能的位置时，所提出的注意力模块相当于Transformer注意力
 
 ### Deformable Transformer Encoder
-- 
+用多尺度可变形注意力模块取代DETR的Transformer注意力模块，具体而言：
+- 多尺度特征图的构建：
+  - 从ResNet的 $C_3$ 到 $C_5$ 阶段的输出特征图中提取多尺度特征图 $\{x^l\}_{l=1}^{L-1} (L=4)$ (通过1*1卷积)，其中 $C_l$ 的分辨率比输入图像第 $2^l$ 
+  - 最低分辨率特征图 $x^L$ 通过 $C_5$ 阶段的 3*3 stride=2 的卷积获得，表示为 $C_6$
+  - 所有多尺度特征图有C=256个通道
+  - 没有使用FPN中的自上而下结构，因为根据式(3)可以看到，多尺度可变形注意力本身可以在多尺度特征图之间交换信息
+- encoder的结构：
+  - 输入和输出都是有相同分辨率的多尺度特征图，key元素和query元素都是多尺度特征图中的元素，对于每个query像素，参考点是它本身
+  - 为了识别每个query像素所处的特征层，除了位置特征向量外，还在特征表征中添加了一个尺度级特征向量 $e_l$ ，不同于固定编码的位置向量，尺度级向量 $\{e_l\}_{l=1}^L$ 为随机初始化的，且与网络共同训练
+- 结构如附录A.2：
+    <center><img src=../images/image-143.png style="zoom:50%"></center>
 
 ### Deformable Transformer Decoder
+- decoder中包括cross-attention和self-Attention
+  - 将cross-attention替换为多尺度可变形注意力，self-attention不变
+  - 参考点 $\hat{p_q}$ 的2d标准化的坐标是由object query embedding通过一个可学习的线性投影层+sigmoid函数预测到的
+- 由于多尺度可变形注意力模块提取的是参考点周围的图像特征，因此让家安侧头预测边界框与参考点的相对偏移量，以进一步降低优化难度
+  - 参考点被用作边界框中心的初始猜测
+  - 检测头预测参考点的偏移，详见附录A.3
+  - 作用：学习到的decoder注意力将与预测的边界框有很强的相关性
+  <center><img src=../images/image-144.png style="zoom:50%"></center>
 
 ## ADDITIONAL IMPROVEMENTS AND VARIANTS FOR DEFORMABLE DETR
