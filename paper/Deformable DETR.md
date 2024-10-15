@@ -1,6 +1,6 @@
 # Deformable DETR: Deformable Transformers for End-to-End Object Detection
-https://arxiv.org/pdf/2010.04159
-
+https://arxiv.org/pdf/2010.04159  
+很棒的解析：https://zhuanlan.zhihu.com/p/372116181
 # ABSTRACT
 - 提出Deformable DETR
   - 结合可变形卷积的稀疏空间采样的优点和Transformers的关系建模能力
@@ -36,6 +36,10 @@ DETR的问题：
 ### Deformable Attention Module
 可变形注意力模块仅关注参考点周围的一小组key采样点，而不管特征图的空间大小，结构如图2所示，公式如下所示：
 <center><img src=../images/image-139.png style="zoom:50%"></center>
+
+- <u>问题：为什么注意力权重 $A_{mqk}$ 可以由全连接层直接预测得到？</u>
+- 原因：https://zhuanlan.zhihu.com/p/372116181 这个回答扯什么query embedding，又扯什么object query；扯什么1-stage，又扯什么2-stage。属实看不明白在整啥玩意！！！
+
 复杂度：
 <center><img src=../images/image-140.png style="zoom:50%"></center>
 <center><img src=../images/image-141.png style="zoom:50%"></center>
@@ -48,6 +52,8 @@ DETR的问题：
 - 当L=1，K=1且 $W_m'$ 固定为单位矩阵时，可变形注意力模块退化为可变形卷积模块，可变形卷积为单尺度特征图输入设计的，每个注意力头仅关注一个采样点
 - 本文的多尺度可变形注意力会关注来自多尺度输入的多个采样点
 - 所提出的（多尺度）可变形注意模块也可以被视为 Transformer 注意力有效变体，其中通过可变形采样位置引入预过滤机制。当采样点遍历所有可能的位置时，所提出的注意力模块相当于Transformer注意力
+- <u>问题：为何不需要FPN也能达到跨层融合的效果？</u>
+- 回答：https://zhuanlan.zhihu.com/p/372116181
 
 ### Deformable Transformer Encoder
 用多尺度可变形注意力模块取代DETR的Transformer注意力模块，具体而言：
@@ -65,11 +71,28 @@ DETR的问题：
 ### Deformable Transformer Decoder
 - decoder中包括cross-attention和self-Attention
   - 将cross-attention替换为多尺度可变形注意力，self-attention不变
-  - 参考点 $\hat{p_q}$ 的2d标准化的坐标是由object query embedding通过一个可学习的线性投影层+sigmoid函数预测到的
-- 由于多尺度可变形注意力模块提取的是参考点周围的图像特征，因此让家安侧头预测边界框与参考点的相对偏移量，以进一步降低优化难度
-  - 参考点被用作边界框中心的初始猜测
-  - 检测头预测参考点的偏移，详见附录A.3
-  - 作用：学习到的decoder注意力将与预测的边界框有很强的相关性
+  - **参考点 $\hat{p_q}$ 的2d标准化的坐标是由object query embedding通过一个可学习的线性投影层+sigmoid函数预测到的**
+- 参考点被用作边界框中心的初始猜测
+- 由于多尺度可变形注意力模块提取的是参考点周围的图像特征，因此让检测头预测边界框与参考点的相对偏移量，以进一步降低优化难度，详见附录A.3
+  - 问题：为何检测头部的回归分支预测的是偏移量而非绝对坐标值？
+  - 原因：采样点的位置是基于参考点和对应的坐标偏移量计算出来的，也就是说采样特征是分布在参考点附近的，既然这里需要由采样特征回归出bbox的位置，那么预测相对于参考点的偏移量就会比直接预测绝对坐标更易优化，更有利于模型学习。【参考：https://zhuanlan.zhihu.com/p/372116181】
+- 作用：学习到的decoder注意力将与预测的边界框有很强的相关性
   <center><img src=../images/image-144.png style="zoom:50%"></center>
 
 ## ADDITIONAL IMPROVEMENTS AND VARIANTS FOR DEFORMABLE DETR
+可变形DETR为利用端到端目标检测器的各种变体提供了可能性，介绍这些改进和变体：
+### Iterative Bounding Box Refinement
+参考论文Raft: Recurrent all-pairs field transforms for optical flow，本文设计了一个简单、高效的迭代边界框细化机制来提高检测性能，每个decoder layer根据前一层的预测来细化边界框，具体描述如下：
+<center><img src=../images/image-145.png style="zoom:70%"></center>
+<center><img src=../images/image-146.png style="zoom:70%"></center>
+
+仅当使用了iterative bbox refine策略时有这一步：使用bbox检测头部对解码特征进行预测，得到相对于参考点(boxes or points)的偏移量，然后加上参考点坐标（先经过反sigmoid处理，即先从归一化的空间从还原出来），最后这个结果再经过sigmoid（归一化）得到校正的参考点，供下一层使用（在输入下一层之前会取消梯度，因为这个参考点在各层相当于作为先验的角色）【参考：https://zhuanlan.zhihu.com/p/372116181】
+
+### Two-Stage Deformable DETR
+原始DETR中，decoder中的object queries与当前图像无关，受到两阶段目标检测器的启发 (如RCNN，即先提取候选区域，再对区域分类)，本文探索了可变形DETR的变体，即再第一阶段生成候选区域，生成的候选区域会被作为object queries输入decoder以进一步细化，形成两阶段可变形DETR  
+在第一阶段，为了实现高召回率候选框，多尺度特征图中的每个像素将充当object query。然而，直接将object queries设置为像素会给decoder中的self-attention模块带来不可接受的计算和内存成本，其复杂性随着查询数量呈二次方增长。为了避免这个问题，本方法删除了decoder并形成一个encoder-only的 Deformable DETR 来生成区域候选框。其中，每个像素都被分配为一个object query，它直接预测一个边界框。得分最高的边界框被认为是候选区域。在将候选区域馈送到第二阶段之前，不应用 NMS
+具体描述如下：
+<center><img src=../images/image-147.png style="zoom:70%"></center>
+
+TODO：
+- 把所有的细节画一幅图，再给老师讲
