@@ -16,18 +16,19 @@ Deformable DETR如图1所示：
 # REVISITING TRANSFORMERS AND DETR
 ## Multi-Head Attention in Transformers
 多头注意力结构：
-<center><img src=../images/image-132.png style="zoom:50%"></center>
-<center><img src=../images/image-133.png style="zoom:50%"></center>
+<center><img src=../images/image-149.png style="zoom:50%"></center>
+<center><img src=../images/image-150.png style="zoom:50%"></center>
 
 Transformer的问题：
-<center><img src=../images/image-134.png style="zoom:50%"></center>
+<center><img src=../images/image-148.png style="zoom:50%"></center>
+
+- 注意力权重的均值为0，指数的零次方为1，共有 $N_k$ 个注意力权重，所以注意力权重约等于 $\frac{1}{Nk}$
 
 ## DETR
 DETR结构：
-<center><img src=../images/image-135.png style="zoom:50%"></center>
-
+<center><img src=../images/image-151.png style="zoom:50%"></center>
 DETR的问题：
-<center><img src=../images/image-136.png style="zoom:50%"></center>
+<center><img src=../images/image-152.png style="zoom:50%"></center>
 
 <center><img src=../images/image-137.png style="zoom:50%"></center>
 
@@ -38,7 +39,7 @@ DETR的问题：
 <center><img src=../images/image-139.png style="zoom:50%"></center>
 
 - <u>问题：为什么注意力权重 $A_{mqk}$ 可以由全连接层直接预测得到？</u>
-- 原因：https://zhuanlan.zhihu.com/p/372116181 这个回答扯什么query embedding，又扯什么object query；扯什么1-stage，又扯什么2-stage。属实看不明白在整啥玩意！！！
+- 原因：打个比方：A与B已建立起了对应关系，之后A再通过某种映射关系得到C，B也通过某种映射关系得到D，那么C与D之间必然会有某种程度的耦合与对应关系。这里A、B、C、D就分别指代query、reference points、attention weights以及value。【参考：https://zhuanlan.zhihu.com/p/372116181】
 
 复杂度：
 <center><img src=../images/image-140.png style="zoom:50%"></center>
