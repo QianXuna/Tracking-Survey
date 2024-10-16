@@ -35,12 +35,16 @@ DK-DETR的框架包括四个主要结构：组装基于 DETR 的文本嵌入检�
 整体流程如下：
 - 给一张图，encoder输出多尺度feature tokens作为memory features
 - 表示潜在目标的feature tokens被输入到分类头和回归头中，来生成目标置信度分数和粗略边界框
+  - **Deformable的two_stage模式下，在first stage，即encoder时，会生成archers (类似于RPN生成archers)，像RPN一样，针对archers做分类和回归，得到Proposals，分类的目的只是区分前景与背景，所以生成的proposals是类别无关的，是具有除了背景以外的所有base和novel类别的粗略的框，可以参考OVTrack在 4.1 Model Design的Localization部分提到的：它使用了RPN和回归损失，这种定位过程可以很好地推广到训练时novel的目标类别上**
+    > We find that this localization procedure can generalize well to object classes that are unknown at training time, as also validated by previous works [11, 22, 79].
+    --OVTrack, page 4
 - 根据置信分数选择前N个tokens，并选相应的边界框 $B\mathrm{~}=\{\mathbf{b}_1,\mathbf{b}_2,\ldots,\mathbf{b}_N\}$ 作为初始的anchor框
 - 通过正弦encoding和投影层，这些archor框用于生成content queries $Q^{obj} = \{\mathbf{q}_1^{obj},\mathbf{q}_2^{obj},\ldots,\mathbf{q}_N^{obj}\} \in \mathbb{R}^{N\times D}$ （在DETR中被叫做object queries）以及为后边decoder生成positional embedding
 - 在图2中，从content queries到classification scores的pipeline称为检测分支
   - N个content queries (相当于DETR的object queries)、memory features (相当于DETR encoder输出的embeddings)、positional embeddings被输入到6个decoder层中，得到N个object embeddings，即N个潜在的object features
   - 使用投影层将N个object features和text embedding的尺寸对齐，接着对齐后的object features被送入了text-based分类器来产生对应于base类别classification scores（用于训练），或者base+novel类别的classification scores（用于推理）
 - 此外，为了探索预训练视觉语言模型（VLM）中的丰富知识，引入了辅助知识蒸馏分支并提出了两种巧妙的知识蒸馏方案，即语义知识蒸馏SKD和关系知识蒸馏RKD
+- **框的定位：根据阅读DK-DETR的源代码，其配置文件中明确说明了所使用的decoder为六层DetrTransformerDecoderLayer，每层Decoder都包括：self-attention、cross-attention、FFN，每层Decoder都会预测相对于参考点的唯一，基于DeformableDETR的Iterative Bounding Box Refinement机制，在decoder的最后一层就会输出一个迭代优化过的准确的框的定位**
 
 ## Text-based Classifier
 text-based分类器的步骤：
@@ -115,5 +119,5 @@ text-based分类器的步骤：
 问题：
 - 代码实现，整体流程怎么做
 - 局部问题：
-  - 用于蒸馏decoder的content queries为什么要去掉base类别，只留下novel类别？原文见：
+  - 用于蒸馏decoder的content queries为什么要去掉base类别，只留下novel类别？:
     <center><img src=../images/image-130.png style="zoom:50%"></center>
