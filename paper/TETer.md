@@ -52,3 +52,19 @@ https://arxiv.org/pdf/2207.12978
 
 ## Temporal Class Correction (TCC)
 AET 策略允许我们利用丰富的时间信息来修正分类。如果我们跟踪一个物体，我们假定其类别标签在整个跟踪过程中都是一致的。我们使用简单的多数票来修正每帧的类别预测
+
+
+# More Implementation Details
+## Network architecture
+- 检测器：ResNet的Faster R-CNN
+- exemplar encoder: 4conv-3fc head + group normalization
+
+## Train: TAO
+- 检测器的训练：LVISv0.5、COCO数据集
+- exemplar encoder的训练：TAO训练集
+
+## Train: BDD100K
+- 检测器的训练：following QDTrack which follows ByteTrack
+- exemplar encoder的训练：8个类别的BDD 100K训练集
+
+## Test: TAO
