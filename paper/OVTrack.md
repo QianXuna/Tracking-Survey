@@ -53,7 +53,9 @@ https://arxiv.org/pdf/2304.08408
 
 ## Benchmark
 - Dataset：TAO
-- Novel class：遵循开放词汇检测文献ViLD，使用LVIS定义的稀有类作为novel 类
+- 分类法：TAO主要遵循LVIS的分类法，LVIS根据出现情况将类别分为frequent, common, rare classes。
+  - Base class: frequent class + common class
+  - Novel class：本文遵循开放词汇检测文献ViLD，使用LVIS定义的rare class作为novel class
 - Metric：
   - 过去使用的Track mAP不能评估FP
   - TETA可以除了能评估定位和关联，还可以处理分类
@@ -110,3 +112,11 @@ DDPM
 
 ## Closed-set MOT task: TAO val
 <center><img src=../images/image-49.png style="zoom:50%"></center>
+
+问题：
+- 该问题是针对所有开放词汇跟踪器的问题
+  - 怎么训练RPN？RPN的目的是获得所有不是背景的类别无关的候选框，即它的分类是二值的：背景/前景，那么就有问题了：训练集不能有Base类别的，其具体形式有以下可能：
+    1. 训练图片只有base类别的目标，且有base类别的标注。
+    2. 训练图片有base和novel类别的目标，且只有base类别的标注
+    如果是第一种情况，RPN学习的“背景”只有背景元素；如果是第二种情况，RPN学习的“背景”包括背景和novel类别元素，这就有问题了，其在推理时将novel类别判定为背景怎么办？
+    为了确定是哪一种，最应该做的是去看ViLD的任务设置，其任务setting是相似的
