@@ -53,18 +53,26 @@ https://arxiv.org/pdf/2207.12978
 ## Temporal Class Correction (TCC)
 AET 策略允许我们利用丰富的时间信息来修正分类。如果我们跟踪一个物体，我们假定其类别标签在整个跟踪过程中都是一致的。我们使用简单的多数票来修正每帧的类别预测
 
-
-# More Implementation Details
-## Network architecture
+# Appendix
+## Exemplar-based Classification
+给定一个示例目标，exemplar-based的分类是指通过与给定示例进行比较来确定目标是否属于同一类，从而对目标进行分类。给定视频序列中的两个相邻帧 t1 和 t2，t1 中的所有目标都将被视为exemplar。对于每个exemplar，我们找到 t2 中与该exemplar属于同一类的所有目标
+## More Implementation Details
+### Network architecture
 - 检测器：ResNet的Faster R-CNN
 - exemplar encoder: 4conv-3fc head + group normalization
 
-## Train: TAO
+### Train: TAO
 - 检测器的训练：LVISv0.5、COCO数据集
 - exemplar encoder的训练：TAO训练集
 
-## Train: BDD100K
+### Train: BDD100K
 - 检测器的训练：following QDTrack which follows ByteTrack
 - exemplar encoder的训练：8个类别的BDD 100K训练集
 
-## Test: TAO
+### Test: TAO
+- Eval: TAO val set + TETA
+  
+
+问题：
+- TETer的训练集的类别到底是否有novel类别？
+  - OVTrack说TETer的训练集是base和novel类别之和
