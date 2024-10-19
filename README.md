@@ -180,6 +180,8 @@ repo 列：
 |[DecoMotion](https://arxiv.org/pdf/2407.06531)|not release|ECCV 2024|点跟踪|
 |[co-tracker](https://arxiv.org/pdf/2307.07635)|<https://arxiv.org/pdf/2307.07635>|ECCV 2024|点跟踪|
 |[LaMOT](https://arxiv.org/pdf/2406.08324)|[repo](https://arxiv.org/pdf/2406.08324)|arxiv 2024.6|OVMOT+RMOT|
+|[TAO-Amodal](https://arxiv.org/pdf/2312.12433)|[repo](https://tao-amodal.github.io/index.html)|arxiv 2023.12|非模态感知跟踪||
+
 ### GNN
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |

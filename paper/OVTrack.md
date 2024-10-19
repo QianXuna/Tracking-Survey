@@ -55,7 +55,7 @@ https://arxiv.org/pdf/2304.08408
 - Dataset：TAO
 - 分类法：TAO主要遵循LVIS的分类法，LVIS根据出现情况将类别分为frequent, common, rare classes。
   - Base class: frequent class + common class
-  - Novel class：本文遵循开放词汇检测文献ViLD，使用LVIS定义的rare class作为novel class
+  - Novel class：rare class
 - Metric：
   - 过去使用的Track mAP不能评估FP
   - TETA可以除了能评估定位和关联，还可以处理分类
@@ -72,7 +72,7 @@ https://arxiv.org/pdf/2304.08408
 - 现存的closed-set跟踪器仅跟踪base类别的目标，即训练数据分布中出现的目标类别
 - 为了实现开放词汇分类，需要能够配置我们感兴趣的类而无需重新训练。受到开放词汇检测文献ZSD的启发，将Faster R-CNN和CLIP联系起来
   - 提取RoI的特征 $f_r = \mathcal{R}(\phi(I),\mathbf{b}_r),\forall r\in P$ ，r为RPN proposal输出得目标候选集合P的一个元素
-  - 将Faster R-CNN的分类头换为一个文本头，还加了一个图像头，用于为每个$f_r$生成embeddings $\hat{t_r}$ 和 $\hat{i_r}$ ，用CLIP的文本和图像的encoder来监督这2个头。具体地：
+  - 将Faster R-CNN的分类头换为一个文本头，还加了一个图像头，用于为每个$f_r$生成embeddings $\hat{t_r}$ 和 $\hat{i_r}$ ，用CLIP的文本和图像的encoder来监督这2个头 (两个头都是从CLIP知识蒸馏的)。具体地：
     - 对于文本头：
       - 使用类别名生成包括L个文本向量 $v_c$ 和一个类名embedding $w_c$ 的文本prompt集合 $\mathcal{P}(c) = \{\mathbf{v}_1^c,...,\mathbf{v}_L^c,\mathbf{w}_c\}$ 
       - 将prompt集合输入到CLIP的文本encoder中， $\mathbf{t}_c=\mathcal{E}(\mathcal{P}(c)),\forall c\in\mathcal{C}^\text{base}$ 
@@ -82,7 +82,6 @@ https://arxiv.org/pdf/2304.08408
     - 对于图像头：
       - 用CLIP的图像encoder，对类别r，crop出一个输入图像为 $b_r$ ，获得图像embedding $\mathbf{i}_r=\mathcal{I}(\mathcal{R}(I,\mathbf{b}_r))$ ，同理最小化 $\hat{i_r}$ 和 $i_r$ 之间的距离
         <center><img src=../images/image-43.png style="zoom:50%"></center>
-        我的理解：这里没有说
 
 ### Association
 - 由于Open-vocabulary包含任意的场景、任意的相机模式、任意的目标运动模式，运动特征通常是脆弱的
