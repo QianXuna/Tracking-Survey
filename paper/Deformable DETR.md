@@ -72,7 +72,7 @@ DETR的问题：
 ### Deformable Transformer Decoder
 - decoder中包括cross-attention和self-Attention
   - 将cross-attention替换为多尺度可变形注意力，self-attention不变
-  - **参考点 $\hat{p_q}$ 的2d标准化的坐标是由object query embedding通过一个可学习的线性投影层+sigmoid函数预测到的**
+  - **reference point $\hat{p_q}$ 的2d标准化的坐标是由object query embedding通过一个可学习的线性投影层+sigmoid函数预测到的**
 - 参考点被用作边界框中心的初始猜测
 - 由于多尺度可变形注意力模块提取的是参考点周围的图像特征，因此让检测头预测边界框与参考点的相对偏移量，以进一步降低优化难度，详见附录A.3
   - 问题：为何检测头部的回归分支预测的是偏移量而非绝对坐标值？
@@ -83,7 +83,7 @@ DETR的问题：
 ## ADDITIONAL IMPROVEMENTS AND VARIANTS FOR DEFORMABLE DETR
 可变形DETR为利用端到端目标检测器的各种变体提供了可能性，介绍这些改进和变体：
 ### Iterative Bounding Box Refinement
-参考论文Raft: Recurrent all-pairs field transforms for optical flow，本文设计了一个简单、高效的迭代边界框细化机制来提高检测性能，每个decoder layer根据前一层的预测来细化边界框，具体描述如下：
+参考论文Raft: Recurrent all-pairs field transforms for optical flow，本文设计了一个简单、高效的迭代边界框细化机制来提高检测性能，每个decoder layer根据前一层的预测来细化边界框。每层Decoder都是可以输出bbox和分类信息的，如果都利用起来算损失则成为auxiliary loss。具体描述如下：
 <center><img src=../images/image-145.png style="zoom:70%"></center>
 <center><img src=../images/image-146.png style="zoom:70%"></center>
 

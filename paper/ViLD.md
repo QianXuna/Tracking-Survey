@@ -22,4 +22,4 @@ https://zhuanlan.zhihu.com/p/369464298
 问题：
 - 推理阶段怎么区分背景和novel类别目标
   - 回答：用base类别训练RPN，也能泛化到novel类别上，参考ViLD论文：
-    <center><img src=../images/image-153.png style="zoom:50%"></center>
+    <center><img src=../images/image-153.png style="zoom:70%"></center>
