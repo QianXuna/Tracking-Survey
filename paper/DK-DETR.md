@@ -120,4 +120,7 @@ text-based分类器的步骤：
 - 代码实现，整体流程怎么做
 - 局部问题：
   - 用于蒸馏decoder的content queries为什么要去掉base类别，只留下novel类别？:
-    <center><img src=../images/image-130.png style="zoom:50%"></center>
+    解答：<center><img src=../images/image-130.png style="zoom:50%"></center>
+  - novel类别没有标注，怎么监督decoder的FFN回归？
+    - 未解决，可能对Novel类别没有FFN回归
+  
