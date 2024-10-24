@@ -73,7 +73,7 @@ repo 列：
 |[DQTrack](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_End-to-end_3D_Tracking_with_Decoupled_Queries_ICCV_2023_paper.pdf)|[project](<https://sites.google.com/view/dqtrack>)|ICCV 2023|3D|
 |[DARTH](https://openaccess.thecvf.com/content/ICCV2023/papers/Segu_DARTH_Holistic_Test-time_Adaptation_for_Multiple_Object_Tracking_ICCV_2023_paper.pdf)|[repo](<https://github.com/mattiasegu/darth>)|ICCV 2023|域偏移|
 |[UCSL](https://arxiv.org/pdf/2309.00942)|无|ICCV 2023|无监督|
-|[Type-to-Track](https://arxiv.org/pdf/2305.13495)|[repo](<https://github.com/uark-cviu/Type-to-Track>)|NIPS 2023|Open-Vocabulary、RMOT|
+|[Type-to-Track](https://arxiv.org/pdf/2305.13495)|[repo](<https://github.com/uark-cviu/Type-to-Track>)|NIPS 2023|RMOT、GroOT数据集、MENDER框架|
 |[Hybrid-SORT](https://browse.arxiv.org/pdf/2308.00783)|[repo](<https://github.com/ymzis69/HybridSORT>)|AAAI 2024||
 |[UCMCTrack](https://browse.arxiv.org/pdf/2312.08952)|[repo](<https://github.com/corfyi/UCMCTrack>)|AAAI 2024||
 |[SRTrack](https://ojs.aaai.org/index.php/AAAI/article/view/28115)|[repo](<https://github.com/lzzppp/SR-Track>)|AAAI 2024||
