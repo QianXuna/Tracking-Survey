@@ -12,8 +12,8 @@ https://openreview.net/pdf?id=GDS5eN65QY
 # Method
 ## Overview
 pipeline如图2所示
-- 先构建了一个modality pre-fusion：输入从backbone获取的初步image features，以及从CLIP模型获取的text embeddings，执行pre-fusion生成fused image features I 和 text features T
-- 在此之后，detect queries和track queries输入dual-branch decoder：该decoder受到attention isolation策略的保护，同时允许I和T的交互
+- 先构建了一个modality pre-fusion，便于后续的交互，具体来说：encoder输入从backbone获取的初步image features，以及从CLIP模型获取的text embeddings，执行pre-fusion生成fused image features I 和 text features T
+- 在此之后，detect queries和track queries并行输入到dual-branch decoder：该decoder受到attention isolation策略的保护，同时允许I和T的交互
 - decoder的两个分支分别产生 $[O_{\mathrm{img}}^{\mathrm{det}},O_{\mathrm{img}}^{\mathrm{tr}}]$ 和 $[O_{\mathrm{txt}}^{\mathrm{det}},O_{\mathrm{txt}}^{\mathrm{tr}}]$ ：在这些输出中， $O_{txt}$ 参与和T的对比学习来进行分类， $O_{img}$ 作为类别信息传播 (CIP) 策略的输入，将当前帧的更新过的类别信息注入到类别信息流中
 - 使用与 DETR 相同的方法将 $Q_{det}$ 与新出现目标匹配
 <center><img src=../images/image-154.png style="zoom:70%"></center>
@@ -28,8 +28,8 @@ OVTR的感知部分建立于MOTR基础之上，在encoder和decoder中加入视�
 - CLIP生成的text和image embeddings是使用CLIP离线产生的
 
 ### Feature Pre-fusion and Enhancement
-- 收到多模态检测器GLIP、Grounding DINO的启发，集成了image-to-text和text-to-image的cross-attention模块来进行特征融合，从而增强image和text的表征，为他们在decoder中的交互做好准备
-- 由于enfcoder输出的初步content features可能会对decoder带来误导，因此遵循MOTR的做法，通过可学习的初始化生成queries的content part，而position part来自于encoder的输出
+- 受到多模态检测器GLIP、Grounding DINO的启发，集成了image-to-text和text-to-image的cross-attention模块来进行特征融合，从而增强image和text的表征，为他们在decoder中的交互做好准备
+- 由于encoder输出的初步content features可能会对decoder带来误导，因此遵循MOTR的做法，通过可学习的初始化生成queries的content part，而position part来自于encoder的输出
 
 ### Dual-Branch Structure
 - 图3是双分支结构
