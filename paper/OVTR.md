@@ -40,7 +40,7 @@ OVTR的感知部分建立于MOTR基础之上，在encoder和decoder中加入视�
 - CLIP生成的text embeddings和image embeddings是使用CLIP离线产生的
 
 ### Feature Pre-fusion and Enhancement
-- 受到多模态检测器GLIP、Grounding DINO的启发，集成了image-to-text和text-to-image的cross-attention模块来进行特征融合，从而增强image和text的表征，为他们在decoder中的交互做好准备
+- 受到多模态检测器GLIP、Grounding DINO的启发（这在GLIP中称为Language-Aware Deep Fusion，即使用跨模态多头注意力机制X-MHA融合图像特征和文本特征），集成了image-to-text和text-to-image的cross-attention模块来进行特征融合，从而增强image和text的表征，为他们在decoder中的交互做好准备
 - 由于encoder输出的初步content features可能会对decoder带来误导，因此遵循MOTR的做法，通过可学习的初始化生成queries的content part，而position part来自于encoder的输出
 
 ### Dual-Branch Structure

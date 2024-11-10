@@ -24,9 +24,10 @@ repo 列：
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
 |[DETR](https://arxiv.org/pdf/2005.12872)|[repo](https://github.com/facebookresearch/detr)|2020 arxiv|||
-|[Deformable DETR](https://arxiv.org/pdf/2010.04159)|[repo](https://github.com/fundamentalvision/Deformable-DETR)|ICLR 2023 oral|||
+|[Deformable DETR](https://arxiv.org/pdf/2010.04159)|[repo](https://github.com/fundamentalvision/Deformable-DETR)|ICLR 2021 oral|||
 |[ViLD](https://arxiv.org/pdf/2104.13921)|[repo](https://github.com/jhoowy/ViLD)|ICLR 2022|CLIP、zero-shot detection|
 |[OV-DETR](https://arxiv.org/pdf/2203.11876)|[repo](https://github.com/yuhangzang/OV-DETR)|ECCV 2022|DETR、用CLIP的图像/文本特征改造object query|
+|[GLIP](https://arxiv.org/pdf/2112.03857)|[repo](https://github.com/microsoft/GLIP)|NIPS 2022||
 |[DK-DETR](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Distilling_DETR_with_Visual-Linguistic_Knowledge_for_Open-Vocabulary_Object_Detection_ICCV_2023_paper.pdf)|[repo](https://github.com/hikvision-research/opera?tab=readme-ov-file)|ICCV 2023|DETR、CLIP|
 |[YOLO-World](https://arxiv.org/pdf/2401.17270)|[repo](https://github.com/AILab-CVC/YOLO-World)|CVPR 2024||
 
