@@ -38,13 +38,14 @@ repo 列：
 | ----- | ---- | --- | -------- | ---------|
 |[TAO](https://arxiv.org/pdf/2005.10356)|[dataset](https://taodataset.org/)|ECCV 2020|跟踪模型的调参方法：基于MAP指标|
 |[AOA](https://arxiv.org/pdf/2101.08040)|[repo](https://github.com/feiaxyt/Winner_ECCV20_TAO)|ECCV-TAO-2020|集成几个模型|
-|[QDTrack](https://arxiv.org/pdf/2210.06984)|[repo](https://github.com/SysCV/qdtrack)|Arxiv 2022|对比学习、外观线索|
+|[QDTrack](https://arxiv.org/pdf/2006.06664)|[repo](https://github.com/SysCV/qdtrack)|CVPR 2021 oral|1. 对一对图像上的数百个区域进行密集采样来进行对比学习，图像对是视频的某一帧及其在时间领域的随机采样，区域的密集采样使用RPN，特征提取使用外观线索<br>2. 关联算法是双向softmax，当前帧的检测目标和过去x帧的候选目标之间做双向softmax，高分表明两个匹配目标在特征空间中彼此最近，可以使用最近邻搜索将目标关联起来|
+|[QDTrack](https://ieeexplore.ieee.org/document/10209207)|[repo](https://github.com/SysCV/qdtrack)|TPAMI 2023|1. 对一对图像上的数百个区域进行密集采样来进行对比学习，图像对是视频的某一帧及其在时间领域的随机采样，区域的密集采样使用RPN，特征提取使用外观线索，与2021的QDTrack的框架相同<br>2. 在2021QDTrack的基础上证明使用静态图像的数据增强能提高性能||
 |[GTR](https://arxiv.org/pdf/2203.13250)|[repo](https://github.com/xingyizhou/GTR)|CVPR 2022|1. Transformer<br>2. MOT17、TAO<br>3. 不是端到端结构、而且文章叙述乱且不清楚|
 |[TETer](https://arxiv.org/pdf/2207.12978)|[project](https://www.vis.xyz/pub/tet/)|ECCV 2022|1. TETA指标：定位、关联和分类<br>2. TETer跟踪器框架<br>3. benchmark：BDD100K、TAO|
-|[OVTrack](https://arxiv.org/pdf/2304.08408)|[project](<https://www.vis.xyz/pub/ovtrack/>)|CVPR 2023|1. 定义Open-vocabulary MOT: 允许跟踪开放词汇表中未见过的种类<br>2. 用嵌入头替换检测器（Faster R-CNN）的分类头，通过将目标提案的图像特征表征与相应的CLIP图像和文本嵌入对齐，学习出一个用于生成图像embedding的图像头和文本embedding的文本头，将CLIP中的知识蒸馏到我们的模型中<br>3. 用DDPM得到静态图像对，该对可以形成对检测器的跟踪头的监督，用有监督的对比损失函数来学习关联|
+|[OVTrack](https://arxiv.org/pdf/2304.08408)|[project](<https://www.vis.xyz/pub/ovtrack/>)|CVPR 2023|1. 定义Open-vocabulary MOT: 要求跟踪训练集的词汇表中未见过的种类<br>2. 用嵌入头替换检测器（Faster R-CNN）的分类头，通过将目标候选框的图像特征表征与相应的CLIP图像和文本嵌入对齐，学习出一个用于生成图像embedding的图像头和文本embedding的文本头，将CLIP中的知识蒸馏到我们的模型中<br>3. 用DDPM得到静态图像对，该对可以形成对检测器的跟踪头的监督，用有监督的对比损失函数来学习关联|
 |[MASA](https://arxiv.org/pdf/2406.04221)|[project](https://matchinganything.github.io/)|CVPR 2024|1. 用数据增强构建两个不同视图，实现像素级对应关系，用SAM自动将相同实例的像素进行分组，生成实例级对应关系，即得到自监督信号，使用对比学习公式来学习<br>2. 设计了一个adapter，用于和检测 (如Detic、Grounding-DINO) 或分割 (如SAM) 基础模型集成，训练阶段：两种基础模型的主干是冻结的，分别设计对应的模型将基础模型的主干特征转换为适合跟踪的新特征，同时与SAM集成时，给adapter增加检测头，蒸馏SAM的检测能力到RCNN的检测头上，adapter的训练使用检测损失和对比损失之和。推理阶段：与目标检测器集成时，输出track features，与SAM集成时，adapter输出track features和检测框|
 |[SLack](https://arxiv.org/pdf/2409.11235)|[repo](<https://github.com/siyuanliii/SLAck>)|ECCV 2024|1. Tracking-by-detection的范式，和TETer、OVTrack相同的目标检测器上构建跟踪器<br>2. 检测器上使用语义头、位置头、外观头，得到语义、位置、外观的embedding，将三者做加来融合<br>3. 在帧内对融合后的特征使用self-attention，在帧间使用cross-attention<br>4. 用ground truth构建匹配矩阵，使用Sinkhorn损失来更新softmax归一化的得分矩阵，这是个最优传输问题<br>5. 为了使用TAO数据集的稀疏标注，检测器首先推断训练视频上的边界框，在训练和测试阶段保持输入数据的一致性。仅在这些预测框与可用的ground truth之间存在匹配时计算关联损失，忽略不匹配的对||
-
+|[GLATrack](https://dl.acm.org/doi/10.1145/3664647.3681530)|not release|ACM MM 2024||
 ### Common MOT
 | paper | repo | year|jyliu 观点|kgmao 观点|
 | ----- | ---- | --- | -------- | ---------|

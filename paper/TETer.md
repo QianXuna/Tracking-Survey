@@ -18,12 +18,12 @@ https://arxiv.org/pdf/2207.12978
 
 # Tracking-Every-Thing Tracker
 模型框架如图5所示
-<center><img src=../images/image-84.png style="zoom:50%"></center>
+<center><img src=../images/image-84.png style="zoom:70%"></center>
 
 ## Class-Agnostic Localization (CAL)
 - 当普通目标检测器将定位和分类解耦时，发现检测器仍能定位罕见甚至novel的目标，图6显示了在TAO验证集上考虑和不考虑分类的目标检测器效果，不考虑类别预测时，检测器性能在罕见、常见和频繁类别中都很稳定，这说明检测器性能的瓶颈在分类器上
 - 由于上边的分析，将常用的使用类别置信度的类内NMS替换为与类无关的对应方法
-    <center><img src=../images/image-85.png style="zoom:50%"></center>
+    <center><img src=../images/image-85.png style="zoom:70%"></center>
 
 ## Associating Every Thing
 不同类别的运动线索是不规则的，所以使用外观线索
@@ -39,9 +39,9 @@ https://arxiv.org/pdf/2207.12978
   - 如果一个RoI和一个Ground truth的IoU高于 $\alpha$ ，就给RoI分配对应的类别标签
   - 正样本是来自同一类别的RoI，负样本是来自不同类别的RoI
   - 修改SupCon loss，并提出一个不平衡的监督对比损失 (U-SupCon)：
-    <center><img src=../images/image-87.png style="zoom:50%"></center>
-    <center><img src=../images/image-93.png style="zoom:50%"></center>
-<center><img src=../images/image-86.png style="zoom:50%"></center>
+    <center><img src=../images/image-87.png style="zoom:70%"></center>
+    <center><img src=../images/image-93.png style="zoom:70%"></center>
+<center><img src=../images/image-86.png style="zoom:90%"></center>
 
 ## Association Strategy
 - 假设在第t帧，query目标q有类别examplar $q_c$， 在第t+1帧有检测出的目标D和它们的类别exemplars的集合 $d_c \in D_c$ 
