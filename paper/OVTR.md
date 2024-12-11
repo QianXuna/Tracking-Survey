@@ -59,12 +59,18 @@ OVTR的感知部分建立于MOTR基础之上，在encoder和decoder中加入视�
   - 目标特征对齐 (object feature alignment, OFA) 分支包括：FFN后跟着一个box head和一个alignment head
   - 类别文本交互 (category text interaction, CTI) 分支包括：一个text cross-attention后接一个FFN
 - 为了使模型实现zero-shot能力，利用OFA分支来对齐，引导image cross-attention层输出的queries，称其为**aligned queries**。 **由于CLIP的image和text embeddings是对齐的，本方法将源自CLIP image embeddings的视觉泛化能力赋予到aligned queries中，使得它们能够有效地关注text cross-attention中text features传达的相应类别信息。这是因为 $E_{txt}$ 源自于CLIP的text embeddings。直观上，即使引入novel类别的目标，与文本特征 $E_{txt}$ 具有相同类别信息的aligned queries也会隐式地与它们对齐。** 具体而言：
-  - 从CLIP image encoder蒸馏知识来对齐alignment head的输出 $F_{align} \in R^{n \times d}$ 和CLIP image embeddings $V_{gt}\in R^{n \times d}$ ， $F_{align}$ 对应着'Overview'节中提到的二分匹配的结果，每个特征对应d维向量，n代表ground-truths目标的数量，alignment loss $L_{align}$如下所示：
+  - 从CLIP image encoder蒸馏知识,将alignment head的输出 $F_{align} \in R^{n \times d}$ 和CLIP image embeddings $V_{gt}\in R^{n \times d}$ 对齐， $F_{align}$ 对应着'Overview'节中提到的二分匹配的结果，每个特征对应d维向量，n代表ground-truths目标的数量，alignment loss $L_{align}$如下所示：
     <center><img src=../images/image-156.png style="zoom:70%"></center>
 
-<center><img src=../images/image-155.png style="zoom:70%"></center>
 <center><img src=../images/image-158.png style="zoom:70%"></center>
 <u>此外，双分支结构还旨在防止类别文本信息影响定位能力</u> (？突然来这么一句)【我的理解：定位能力在OFA分支上，文本信息在CTI分支上，设计两个分支使得定位使用的表征不会杂糅】
 
 ## Attention isolation for decoder protection
-- 
+- 对于decoder，在多个类别信息和track queries的内容都可能产生干扰。具体来说：
+  - self-attention中的queries之间的交互可能会纠缠类别信息，从而对分类性能产生负面影响
+  - decoder并行地处理track queries和detect queries。track queries包含有关被跟踪目标的内容，从而在它们和初始化的detect queries之间出现内容gap。由于self-attention的相互作用，这种gap可能会导致decoder层内之间的冲突
+- 为了解决以上问题，我们提出了注意力隔离机制以用于decoder protection
+
+### Category Isolation Strategy
+### Content Isolation Strategy
+
