@@ -32,7 +32,7 @@ pipeline如图2所示
 - 关于优化问题，MOTR应用了多帧优化，loss的计算考虑了ground truths和matching results，每帧的matching results包括维护的track associations、 $Q_{'det}$ 和新出现目标之间的二分匹配
 
 ### Tracking Mechanism During Inference
-与 MOTR 类似，OVTR 推理期间的网络前向过程遵循与训练期间相同的过程。主要区别在于轨道查询的转换。在检测预测中，如果类别置信度得分超过τdet，则相应更新的检测查询将转换为新的轨迹查询，从而启动新的轨迹。相反，如果跟踪对象在当前帧中丢失（置信度≤τtr），则将其标记为非活动跟踪。如果非活动轨道丢失了 Tmiss 连续帧，则它会被完全删除。
+与 MOTR 类似，OVTR 推理期间的网络前向过程遵循与训练期间相同的过程。主要区别在于track queries的转换。在检测预测中，如果类别置信度得分超过τdet，则相应更新的检测查询将转换为新的轨迹查询，从而启动新的轨迹。相反，如果跟踪对象在当前帧中丢失（置信度≤τtr），则将其标记为非活动跟踪。如果非活动轨道丢失了 Tmiss 连续帧，则它会被完全删除。
 ### Empowering Open Vocabulary Tracking
 利用基于queries的框架的迭代特性，OVTR 跨帧传输有关跟踪目标的信息，在整个连续图像序列中聚合类别信息以实现强大的分类性能，而不是在每帧中执行独立的定位和分类。
 - 在encoder中，来自backbone的初始图像特征和来自CLIP模型的文本embeddings通过pre-fusion来生成融合图像特征 $E_{img}$ 和融合文本特征 $E_{txt}$
@@ -72,5 +72,34 @@ OVTR的感知部分建立于MOTR基础之上，在encoder和decoder中加入视�
 - 为了解决以上问题，我们提出了注意力隔离机制以用于decoder protection
 
 ### Category Isolation Strategy
-### Content Isolation Strategy
+- CTI分支的输出特征 $O_{txt}$ 与文本特征之间做点积【我的理解：与 $E_{txt}$ 计算点积，就能得到aligned query对应每个类别的相似度】，后跟一个softmax操作来产生类别分数矩阵 $S \in R^{N \times M}$ ，其中N代表的是detect queries的数量，M代表的是所选类别的数量
+- 我们计算每两个预测之间的类别得分分布的KL散度，形成一个矩阵，称为差异矩阵 $D \in R^{N \times N}$，公式如下：
+<center><img src=../images/image-159.png style="zoom:70%"></center>
 
+其中， $D_{i,j}$ 为S中对应于第i个和第j个query的类别得分向量之间的正向和反向KL散度之和
+
+- 我们基于当前decoder的S计算差异矩阵D，来生成类别隔离掩码 (category isolation mask) $I \in R^{N \times N}$ ，该掩码在下一个decoder层被加到self-attention层的attention weights上，类别隔离掩码I用下式产生：
+<center><img src=../images/image-160.png style="zoom:70%"></center>
+
+- 当 $I_{i,j}$ 为'True'，表明两个queries之间的类别信息有很大不同，并且在self-attention过程中，该差异可能会导致queries之间的相互干扰，$I_{i,j}$ 为'True'意味着将attention weight设为负无穷，经过softmax后的权重则为0，相当于把这两个queries之间的交互mask掉了
+- 值得注意的是，track queries之间的交互不会被mask，以确保携带特定目标信息的track queries保持连贯性且没有冲突
+- category isolation strategy的过程见图4
+
+<center><img src=../images/image-161.png style="zoom:70%"></center>
+
+### Content Isolation Strategy
+- 为了减轻track queries和detect queries联合进入decoder时目标内容gap的影响，我们引入了内容隔离掩码 (content isolation mask) 。由于track queries和detect queres之间的内容差距，输入queries的内容分布在第一帧检测和后续跟踪之间有所不同。因此，对这两个进程使用普通解码器可能会导致冲突。具体来说，track queries和detect queres之间的内容gap破坏了输出queries的内容规律性，这可能导致后续跟踪时后续decoder层中的矛盾。这增加了第一帧检测和后续跟踪之间的差异
+- 为了确保两个进程之间的解码器操作一致，我们提出了内容隔离掩码，以防止track queries干扰检测到的queries的内容。具体来说，该掩码被添加到第一个decoder层中self-attention的attention weights中，其中用于detect queres和track queries的掩码位置相互关注，设置为 True 以抑制它们的交互。
+  
+- 有关这两种策略的更多详细信息，请参阅附录 A.4。
+
+## Tracking with Category Information Propagation Across Frames
+- 为了实现连续的类别感知和定位，我们利用基于queries的方法的迭代性质，并提出类别信息传播（category information propagation, CIP）策略来聚合跟踪目标信息，从而在整个多帧预测中增强类别先验。
+- 受到MOTR启发，本文使用修改后的transformer decoder层来实现CIP策略，使用对应于第t帧 $f_t$ 的matched updated queries $Q_*^{'t}=[P_*^{'t}, C_*^t]$ 的OFA分支的输出 $O_{img}^{*t}$ ，来从 $Q_*^{'t}$ 更新为第t+1帧 $f_{t+1}$ 的track queries $Q_{tr}^{t+1}=[P_{tr}^{t+1}, C_{tr}^{t+1}]$ 。其中 $C_{tr}^{t+1}$ 为 $Q_{tr}^{t+1}$ 的内容部分，即跨帧传递类别信息的核心。以上过程可以公式化为：
+<center><img src=../images/image-162.png style="zoom:70%"></center>
+
+- 其中，$P_*^{'t}$ , $C_*^t$ 分别表示 $Q_*^{'t}$ 的updated位置部分和内容部分
+- 该网络将 $O_{img}^{*t}$ 中的类别信息与历史内容聚合，为下一帧预测提供 $C_{tr}^{t+1}$ 中的类别先验。通过这种方式，类别信息被传播到下一帧，从而在track queries迭代期间实现多帧传播。同时，对应于 $Q_*^{'t}$ 的边界框 $B_*^t$ 通过 sin-cos 位置编码变换为 $Q_{tr}^{t+1}$ 的 $P_{tr}^{t+1}$ 。我们专门使用 OFA 分支的输出表示，而不是 CTI 分支，因为 OF​​A 分支包含较少的直接文本信息。此方法旨在减少detect queries和track queries之间的内容差距。此外，由于 $O_{img}^{*t}$ 本身是从图像cross-attention层导出的，因此在重新进入时，它可能更容易与该层内的类似信息对齐。
+
+## Optimization
+<center><img src=../images/image-163.png style="zoom:70%"></center>
