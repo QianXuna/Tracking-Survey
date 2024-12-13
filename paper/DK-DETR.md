@@ -34,12 +34,12 @@ DK-DETR的框架包括四个主要结构：组装基于 DETR 的文本嵌入检�
 ## Overall Architecture
 整体流程如下：
 - 给一张图，encoder输出多尺度feature tokens作为memory features
-- 表示潜在目标的feature tokens被输入到分类头和回归头中，来生成目标置信度分数和粗略边界框
+- 这些feature tokens表示潜在目标，它们被输入到一个分类头和一个回归头中，用于生成目标置信度分数和粗略边界框
   - **Deformable的two_stage模式下，在first stage，即encoder时，会生成archers (类似于RPN生成archers)，像RPN一样，针对archers做分类和回归，得到Proposals，分类的目的只是区分前景与背景，所以生成的proposals是类别无关的，是具有除了背景以外的所有base和novel类别的粗略的框，可以参考OVTrack在 4.1 Model Design的Localization部分提到的：它使用了RPN和回归损失，这种定位过程可以很好地推广到训练时novel的目标类别上**
     > We find that this localization procedure can generalize well to object classes that are unknown at training time, as also validated by previous works [11, 22, 79].
     --OVTrack, page 4
-- 根据置信分数选择前N个tokens，并选相应的边界框 $B\mathrm{~}=\{\mathbf{b}_1,\mathbf{b}_2,\ldots,\mathbf{b}_N\}$ 作为初始的anchor框
-- 通过正弦encoding和投影层，这些archor框用于生成content queries $Q^{obj} = \{\mathbf{q}_1^{obj},\mathbf{q}_2^{obj},\ldots,\mathbf{q}_N^{obj}\} \in \mathbb{R}^{N\times D}$ （在DETR中被叫做object queries）以及为后边decoder生成positional embedding
+- 根据置信分数选择前N个tokens，同时选出相应的边界框 $B\mathrm{~}=\{\mathbf{b}_1,\mathbf{b}_2,\ldots,\mathbf{b}_N\}$ 作为初始的anchor框
+- 这些archor框 通过正弦encoding和投影层 生成content queries $Q^{obj} = \{\mathbf{q}_1^{obj},\mathbf{q}_2^{obj},\ldots,\mathbf{q}_N^{obj}\} \in \mathbb{R}^{N\times D}$ （相当于DETR中的object queries）以及为后边decoder生成positional embedding
 - 在图2中，从content queries到classification scores的pipeline称为检测分支
   - N个content queries (相当于DETR的object queries)、memory features (相当于DETR encoder输出的embeddings)、positional embeddings被输入到6个decoder层中，得到N个object embeddings，即N个潜在的object features
   - 使用投影层将N个object features和text embedding的尺寸对齐，接着对齐后的object features被送入了text-based分类器来产生对应于base类别classification scores（用于训练），或者base+novel类别的classification scores（用于推理）
