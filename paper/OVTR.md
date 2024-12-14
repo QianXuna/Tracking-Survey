@@ -103,3 +103,10 @@ OVTR的感知部分建立于MOTR基础之上，在encoder和decoder中加入视�
 
 ## Optimization
 <center><img src=../images/image-163.png style="zoom:70%"></center>
+
+# Appendix
+## Model And Training Hyperparameters
+- 模型结构：遵循DETR 【原文既说它是DINO-DETR，又说它是DETR，从图3的reference points generation那里感觉不对劲，应该two-stage Deformable DETR在encoder阶段才会输出reference points，于是我查了审稿记录，见下图所示，就是two-stage Deformable DETR类型的】中标准的 6-encoder、6-decoder结构，对于decoders之间的query的更新和传播，使用 updated position part P'作为下一个decoder层的输入position part。CTI分支的输出表征 $O_{txt}$ 用作下一个decoder层，这是因为与OFA分支相比，CTI分支包含额外的cross-attention层，允许 $O_{txt}$ 包含更精细的分类信息，从而为后续层中的分类提供更准确的先验。
+
+https://openreview.net/forum?id=GDS5eN65QY：
+<center><img src=../images/image-164.png style="zoom:70%"></center>
