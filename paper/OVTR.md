@@ -23,7 +23,7 @@ https://openreview.net/pdf?id=GDS5eN65QY
 pipeline如图2所示
 ### Revisiting MOTR
 这部分重新回顾的MOTR的逻辑结构
-- 第一帧 $f_{t=1}$ ，detect queries $Q_{det}^{t=1}$ 被输入到decoder中，在这里和encoder输出的图像特征 $E_{img}^{t=1}$ 交互，该过程生成更新后的detect queries $Q_{det}^{'t=1}$ ，这些queries包含目标信息
+- 第一帧 $f_{t=1}$ ，detect queries $Q_{det}^{t=1}$ 被输入到decoder中，在这里和encoder输出的图像特征 $E_{img}^{t=1}$ 交互，该过程生成updated (更新后的)detect queries $Q_{det}^{'t=1}$ ，这些queries包含目标信息
 - 然后从 $Q_{det}^{'t=1}$ 中提取出检测的预测结果，包括了边界框 $B_{det}^{t=1}$ 和目标表征 $O_{det}^{t=1}$
 - 和DETR相反的是，在该跟踪器上， $Q_{det}^{t=1}$ 仅仅需要检测当前帧新出现的目标，于是通过进行二元匹配的方式，仅仅在 $Q_{det}^{'t=1}$ 和新出现目标的ground truth之间做一对一的分配
 - 匹配到的 $Q_{det}^{'t=1}$ 将被用于更新和生成 track queries $Q_{tr}^{t=2}$ ，这些queries用于第二帧 $f_{t=2}$ 并被再次送入decoder和图像特征 $E_{img}^{t=2}$ 交互来提取和 $Q_{tr}^{t=2}$ 匹配的目标的位置和表征，从而进行跟踪预测
@@ -32,7 +32,7 @@ pipeline如图2所示
 - 关于优化问题，MOTR应用了多帧优化，loss的计算考虑了ground truths和matching results，每帧的matching results包括维护的track associations、 $Q_{'det}$ 和新出现目标之间的二分匹配
 
 ### Tracking Mechanism During Inference
-与 MOTR 类似，OVTR 推理期间的网络前向过程遵循与训练期间相同的过程。主要区别在于track queries的转换。在检测预测中，如果类别置信度得分超过τdet，则相应更新的检测查询将转换为新的轨迹查询，从而启动新的轨迹。相反，如果跟踪对象在当前帧中丢失（置信度≤τtr），则将其标记为非活动跟踪。如果非活动轨道丢失了 Tmiss 连续帧，则它会被完全删除。
+与 MOTR 类似，OVTR 推理期间的网络前向过程遵循与训练期间相同的过程。主要区别在于track queries的转换。在检测预测中，如果类别置信度得分超过τdet，则相应updated detect queries将转换为新的track queries，从而启动新的轨迹。相反，如果跟踪对象在当前帧中丢失（置信度≤τtr），则将其标记为非活动跟踪。如果非活动轨道丢失了 Tmiss 连续帧，则它会被完全删除。
 ### Empowering Open Vocabulary Tracking
 利用基于queries的框架的迭代特性，OVTR 跨帧传输有关跟踪目标的信息，在整个连续图像序列中聚合类别信息以实现强大的分类性能，而不是在每帧中执行独立的定位和分类。
 - 在encoder中，来自backbone的初始图像特征和来自CLIP模型的文本embeddings通过pre-fusion来生成融合图像特征 $E_{img}$ 和融合文本特征 $E_{txt}$
