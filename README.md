@@ -21,17 +21,38 @@ repo 列：
 
 # Paper
 ## 检测
+### Open Vocabulary OD
+| paper | repo | year| jyliu 观点 | kgmao 观点|
+| ----- | ---- | --- | ---------- | --------- |
+|[ViLD](https://arxiv.org/pdf/2104.13921)|[repo](https://github.com/jhoowy/ViLD)|ICLR 2022|CLIP、zero-shot detection|
+|[DetPro](https://arxiv.org/pdf/2203.14940)|[repo](https://github.com/dyabel/detpro)|CVPR 2022||
+|[DK-DETR](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Distilling_DETR_with_Visual-Linguistic_Knowledge_for_Open-Vocabulary_Object_Detection_ICCV_2023_paper.pdf)|[repo](https://github.com/hikvision-research/opera?tab=readme-ov-file)|ICCV 2023|DETR、CLIP|
+|[SIC-CADS](https://ojs.aaai.org/index.php/AAAI/article/view/27939)|[repo](https://github.com/mala-lab/SIC-CADS)|AAAI 2024||
+|[YOLO-World](https://openaccess.thecvf.com/content/CVPR2024/papers/Cheng_YOLO-World_Real-Time_Open-Vocabulary_Object_Detection_CVPR_2024_paper.pdf)|[repo](https://github.com/AILab-CVC/YOLO-World)|CVPR 2024||
+|[HyperLearner](https://openaccess.thecvf.com/content/CVPR2024/html/Kong_Hyperbolic_Learning_with_Synthetic_Captions_for_Open-World_Detection_CVPR_2024_paper.html)|无|CVPR 2024||
+|[BIND](https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_Exploring_Region-Word_Alignment_in_Built-in_Detector_for_Open-Vocabulary_Object_Detection_CVPR_2024_paper.html)|无|CVPR 2024||
+|[SHiNe](https://openaccess.thecvf.com/content/CVPR2024/html/Liu_SHiNe_Semantic_Hierarchy_Nexus_for_Open-vocabulary_Object_Detection_CVPR_2024_paper.html)|[repo](https://github.com/naver/shine)|CVPR 2024||
+|[DetCLIPv3](https://openaccess.thecvf.com/content/CVPR2024/html/Yao_DetCLIPv3_Towards_Versatile_Generative_Open-vocabulary_Object_Detection_CVPR_2024_paper.html)|无|CVPR 2024||
+|[LBP](https://openaccess.thecvf.com/content/CVPR2024/html/Li_Learning_Background_Prompts_to_Discover_Implicit_Knowledge_for_Open_Vocabulary_CVPR_2024_paper.html)|无|CVPR 2024||
+|[SAMP](https://openaccess.thecvf.com/content/CVPR2024/html/Zhao_Scene-adaptive_and_Region-aware_Multi-modal_Prompt_for_Open_Vocabulary_Object_Detection_CVPR_2024_paper.html)|无|CVPR 2024||
+|[SAS-Det](https://openaccess.thecvf.com/content/CVPR2024/html/Zhao_Taming_Self-Training_for_Open-Vocabulary_Object_Detection_CVPR_2024_paper.html)|[repo](https://github.com/xiaofeng94/SAS-Det)|CVPR 2024|self-training|
+|[RALF](https://openaccess.thecvf.com/content/CVPR2024/html/Kim_Retrieval-Augmented_Open-Vocabulary_Object_Detection_CVPR_2024_paper.html)|[repo](https://github.com/mlvlab/RALF)|CVPR 2024||
+|[MarvelOVD](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/02551.pdf)|[repo](https://github.com/wkfdb/MarvelOVD)|ECCV 2024||
+|[CLIFF](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07221.pdf)|[repo](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07221.pdf)|ECCV 2024||
+[Grounding DINO](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06319.pdf)|[repo](https://arxiv.org/pdf/2303.05499)|ECCV 2024||
+|[OpenSight](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/11118.pdf)|not release|ECCV 2024|3D|
+
+### Open World OD
+| paper | repo | year| jyliu 观点 | kgmao 观点|
+| ----- | ---- | --- | ---------- | --------- |
+|[OWOD](https://openaccess.thecvf.com/content/CVPR2021/html/Joseph_Towards_Open_World_Object_Detection_CVPR_2021_paper.html)|[repo](https://github.com/JosephKJ/OWOD)|CVPR 2021 oral|
+|[OV-DETR](https://arxiv.org/pdf/2203.11876)|[repo](https://github.com/yuhangzang/OV-DETR)|ECCV 2022|DETR、用CLIP的图像/文本特征改造object query|
+
+### Common OD
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
 |[DETR](https://arxiv.org/pdf/2005.12872)|[repo](https://github.com/facebookresearch/detr)|2020 arxiv|||
 |[Deformable DETR](https://arxiv.org/pdf/2010.04159)|[repo](https://github.com/fundamentalvision/Deformable-DETR)|ICLR 2021 oral|||
-|[ViLD](https://arxiv.org/pdf/2104.13921)|[repo](https://github.com/jhoowy/ViLD)|ICLR 2022|CLIP、zero-shot detection|
-|[DetPro](Learning to Prompt for Open-Vocabulary Object Detection with
- Vision-Language Model)|CVPR 2022||
-|[OV-DETR](https://arxiv.org/pdf/2203.11876)|[repo](https://github.com/yuhangzang/OV-DETR)|ECCV 2022|DETR、用CLIP的图像/文本特征改造object query|
-|[GLIP](https://arxiv.org/pdf/2112.03857)|[repo](https://github.com/microsoft/GLIP)|NIPS 2022||
-|[DK-DETR](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Distilling_DETR_with_Visual-Linguistic_Knowledge_for_Open-Vocabulary_Object_Detection_ICCV_2023_paper.pdf)|[repo](https://github.com/hikvision-research/opera?tab=readme-ov-file)|ICCV 2023|DETR、CLIP|
-|[YOLO-World](https://arxiv.org/pdf/2401.17270)|[repo](https://github.com/AILab-CVC/YOLO-World)|CVPR 2024||
 
 
 ## 多目标
