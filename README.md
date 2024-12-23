@@ -20,6 +20,11 @@ repo 列：
 |[ECCV 2024](https://eccv2024.ecva.net/virtual/2024/papers.html?filter=titles)|<https://github.com/amusi/ECCV2024-Papers-with-Code>|2024||
 
 # Paper
+## 综述
+### Open-vocabulary learning
+| paper | repo | year| jyliu 观点 | kgmao 观点|
+| ----- | ---- | --- | ---------- | --------- |
+|[paper](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10420487)|无|TPAMI 2024|关于开放词汇学习的首篇详尽的文献综述|
 ## 检测
 ### Open Vocabulary OD
 | paper | repo | year| jyliu 观点 | kgmao 观点|
