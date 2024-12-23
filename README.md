@@ -27,7 +27,7 @@ repo 列：
 |[ViLD](https://arxiv.org/pdf/2104.13921)|[repo](https://github.com/jhoowy/ViLD)|ICLR 2022|CLIP、zero-shot detection|
 |[DetPro](https://arxiv.org/pdf/2203.14940)|[repo](https://github.com/dyabel/detpro)|CVPR 2022||
 |[DK-DETR](https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Distilling_DETR_with_Visual-Linguistic_Knowledge_for_Open-Vocabulary_Object_Detection_ICCV_2023_paper.pdf)|[repo](https://github.com/hikvision-research/opera?tab=readme-ov-file)|ICCV 2023|DETR、CLIP|
-|[SIC-CADS](https://ojs.aaai.org/index.php/AAAI/article/view/27939)|[repo](https://github.com/mala-lab/SIC-CADS)|AAAI 2024||
+|[SIC-CADS](https://ojs.aaai.org/index.php/AAAI/article/view/27939)|[repo](https://github.com/mala-lab/SIC-CADS)|AAAI 2024|1. 发现并定义了共生和相互依赖这两种潜藏在相似场景下不同类别之间的关系，传统的基于区域概念的学习方法不能够有效检测某个外观较小、模糊或被遮挡的目标 （称为hard objects）<br> 2. 提出的方法SIC-CADS【没写主要思想】<br> 3.所提出的方法是一个简单、轻量级的通用框架，可以轻松插入不同的现有 OVOD 模型，以增强其检测hard objects的能力|
 |[YOLO-World](https://openaccess.thecvf.com/content/CVPR2024/papers/Cheng_YOLO-World_Real-Time_Open-Vocabulary_Object_Detection_CVPR_2024_paper.pdf)|[repo](https://github.com/AILab-CVC/YOLO-World)|CVPR 2024||
 |[HyperLearner](https://openaccess.thecvf.com/content/CVPR2024/html/Kong_Hyperbolic_Learning_with_Synthetic_Captions_for_Open-World_Detection_CVPR_2024_paper.html)|无|CVPR 2024||
 |[BIND](https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_Exploring_Region-Word_Alignment_in_Built-in_Detector_for_Open-Vocabulary_Object_Detection_CVPR_2024_paper.html)|无|CVPR 2024||
