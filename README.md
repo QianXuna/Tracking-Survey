@@ -24,7 +24,9 @@ repo 列：
 ### Open-vocabulary learning
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
-|[paper](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10420487)|无|TPAMI 2024|关于开放词汇学习的首篇详尽的文献综述|
+|[Towards Open Vocabulary Learning: A Survey](https://arxiv.org/pdf/2306.15880)|无|TPAMI 2024||
+|[A Survey on Open-Vocabulary Detection and Segmentation: Past, Present, and Future](https://arxiv.org/pdf/2307.09220)|[awesome](https://github.com/seanzhuh/awesome-open-vocabulary-detection-and-segmentation)|TPAMI 2024||
+
 ## 检测
 ### Open Vocabulary OD
 | paper | repo | year| jyliu 观点 | kgmao 观点|
