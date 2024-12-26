@@ -29,10 +29,12 @@
 - 分辨open-vocabulary和zero-shot：
   <center><img src=../images/image-168.png style="zoom:70%"></center>
 
-> 来源：<https://zhuanlan.zhihu.com/p/692846245>
+> 来源：<https://www.zhihu.com/question/68275921/answer/2034667107>
 综述：<https://arxiv.org/pdf/2307.09220>
 github 知识库：<https://github.com/seanzhuh/awesome-open-vocabulary-detection-and-segmentation>
 
 ## Method
 
+这项工作旨在利用 CLIP 的图像级/全局知识来更好地识别硬物体，从而实现更有效的 OVOD。我们首先通过从 CLIP 传输全​​局多模态知识来训练多标签识别（MLR）模块，以识别整个场景中的所有现有类别。然后在推理过程中，我们的 MLR 模块可以通过简单的检测分数细化过程轻松插入现有的 OVOD 模型，以提高检测性能。
 <center><img src=../images/image-167.png style="zoom:70%"></center>
+
