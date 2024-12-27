@@ -36,5 +36,36 @@ github 知识库：<https://github.com/seanzhuh/awesome-open-vocabulary-detectio
 ## Method
 
 这项工作旨在利用 CLIP 的图像级/全局知识来更好地识别硬物体，从而实现更有效的 OVOD。我们首先通过从 CLIP 传输全​​局多模态知识来训练多标签识别（MLR）模块，以识别整个场景中的所有现有类别。然后在推理过程中，我们的 MLR 模块可以通过简单的检测分数细化过程轻松插入现有的 OVOD 模型，以提高检测性能。
+
+### Preliminaries
+
+<center><img src=../images/image-170.png style="zoom:70%"></center>
+### CLIP-driven Multi-modal MLR Modeling
+
+### CLIP-driven Multi-modal MLR Modeling
+
+#### Overall Framework
+
+- 输入图片，使用 ResNet50-FPN backbone 提取多尺度特征图，然后使用全局最大池化 (Global Max Pooling, GMP) 运算符和不同 FPN 级别中的所有特征向量的串联以获得一个全局图像嵌入 $e^{global}$
+- 随后在两个分支中使用全局图像嵌入：包括一个 text MLR 分支，用于对齐 $e^{global}$ 和 CLIP text encoder产生的不同类别的嵌入，和一个 visual MLR 分支，用于把 CLIP image encoder产生的全局图像嵌入蒸馏给 $e^{global}$ 。在推理过程中，text MLR 在识别 novel 类别方面较弱，因为它仅使用 base 类别进行训练，而visual MLR 通过蒸馏 CLIP 的 zero-shot 识别 (recognition) 能力可以识别 base 类别和 novel 类别。因此，我们结合两个分支的 scores 来实现 novel 类别和 base 类别的更好的识别性能，这被称为多模态 MLR。下面我们详细介绍一下它们。
+
 <center><img src=../images/image-167.png style="zoom:70%"></center>
 
+#### Text MLR
+
+<center><img src=../images/image-169.png style="zoom:70%"></center>
+
+#### Visual MLR
+
+<center><img src=../images/image-171.png style="zoom:70%"></center>
+
+<center><img src=../images/image-172.png style="zoom:70%"></center>
+
+#### Multi-modal MLR
+
+<center><img src=../images/image-173.png style="zoom:70%"></center>
+<center><img src=../images/image-174.png style="zoom:70%"></center>
+
+### Context-aware OVOD with Image-Level Multi-modal MLR Scores
+
+<center><img src=../images/image-175.png style="zoom:70%"></center>
