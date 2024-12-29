@@ -69,3 +69,8 @@ github 知识库：<https://github.com/seanzhuh/awesome-open-vocabulary-detectio
 ### Context-aware OVOD with Image-Level Multi-modal MLR Scores
 
 <center><img src=../images/image-175.png style="zoom:70%"></center>
+
+$$
+D_{K L}(p | q)=\sum_{i=1}^{N} p\left(x_{i}\right) \log \left(\frac{p\left(x_{i}\right)}{q\left(x_{i}\right)}\right)=\sum_{i=1}^{N} p\left(x_{i}\right) \cdot-\log \left(\frac{q\left(x_{i}\right)}{p\left(x_{i}\right)}\right) \geq -\log \left(\sum_{i=1}^{N} p\left(x_{i}\right) \cdot \frac{q\left(x_{i}\right)}{p\left(x_{i}\right)}\right)=0
+$$
+
