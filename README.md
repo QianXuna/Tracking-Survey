@@ -28,6 +28,13 @@ repo 列：
 |[A Survey on Open-Vocabulary Detection and Segmentation: Past, Present, and Future](https://arxiv.org/pdf/2307.09220)|[awesome](https://github.com/seanzhuh/awesome-open-vocabulary-detection-and-segmentation)|TPAMI 2024||
 
 ## 检测
+
+### Visual Grounding
+| paper | repo | year| comment |
+| ----- | ---- | --- | ---------- |
+|[DQ-DETR](https://arxiv.org/pdf/2211.15516)|not release|AAAI 2023|Introduction介绍了Visual Grounding的分支：Referring Expression Comprehension（REC）、Phrase Grounding、Phrase Extraction and Grounding（PRG），本文研究的方向是PEG|
+
+
 ### Open Vocabulary OD
 | paper | repo | year| jyliu 观点 | kgmao 观点|
 | ----- | ---- | --- | ---------- | --------- |
