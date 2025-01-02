@@ -33,6 +33,7 @@ repo 列：
 | paper | repo | year| comment |
 | ----- | ---- | --- | ---------- |
 |[DQ-DETR](https://arxiv.org/pdf/2211.15516)|not release|AAAI 2023|Introduction介绍了Visual Grounding的分支：Referring Expression Comprehension（REC）、Phrase Grounding、Phrase Extraction and Grounding（PRG），本文研究的方向是PEG|
+[Grounding DINO](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06319.pdf)|[repo](https://arxiv.org/pdf/2303.05499)|ECCV 2024|Open-set|
 
 
 ### Open Vocabulary OD
@@ -51,9 +52,8 @@ repo 列：
 |[SAMP](https://openaccess.thecvf.com/content/CVPR2024/html/Zhao_Scene-adaptive_and_Region-aware_Multi-modal_Prompt_for_Open_Vocabulary_Object_Detection_CVPR_2024_paper.html)|无|CVPR 2024||
 |[SAS-Det](https://openaccess.thecvf.com/content/CVPR2024/html/Zhao_Taming_Self-Training_for_Open-Vocabulary_Object_Detection_CVPR_2024_paper.html)|[repo](https://github.com/xiaofeng94/SAS-Det)|CVPR 2024|self-training|
 |[RALF](https://openaccess.thecvf.com/content/CVPR2024/html/Kim_Retrieval-Augmented_Open-Vocabulary_Object_Detection_CVPR_2024_paper.html)|[repo](https://github.com/mlvlab/RALF)|CVPR 2024||
-|[MarvelOVD](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/02551.pdf)|[repo](https://github.com/wkfdb/MarvelOVD)|ECCV 2024||
-|[CLIFF](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07221.pdf)|[repo](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07221.pdf)|ECCV 2024||
-[Grounding DINO](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06319.pdf)|[repo](https://arxiv.org/pdf/2303.05499)|ECCV 2024||
+|[MarvelOVD](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/02551.pdf)|[repo](https://github.com/wkfdb/MarvelOVD)|ECCV 2024|R-CNN|
+|[CLIFF](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07221.pdf)|[repo](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07221.pdf)|ECCV 2024|Diffusion|
 |[OpenSight](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/11118.pdf)|not release|ECCV 2024|3D|
 
 ### Open World OD
